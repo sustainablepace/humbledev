@@ -1,0 +1,21 @@
+Title:
+
+Baseblog
+
+----
+
+Author:
+
+Sascha Lack
+
+----
+
+Description:
+
+A nice & clean basic blog theme for Kirby
+
+----
+
+Info:
+
+© 2012-(date: Year) (link: http://baseblog.sashtown.de text: Baseblog) by (link: http://sashtown.de text: Sascha Lack) | Based on (link: http://getkirby.com text: Kirby) | (link: feed text: RSS Feed)
