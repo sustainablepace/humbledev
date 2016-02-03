@@ -1,6 +1,6 @@
 # baudson dev blog
 
-I'm a software developer at <https://www.rewe-group.com/de/unternehmen/vertriebslinien/rewe-digital> "REWE Digital".
+I'm a software developer at [REWE Digital](https://www.rewe-group.com/de/unternehmen/vertriebslinien/rewe-digital).
 
 ## Installation
 
