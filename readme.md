@@ -8,8 +8,7 @@ Because I always forget.
 
 Create a virtual host configuration file `001-baudson_de.conf` in Apache, typically at `/etc/apache2/sites-available/`, with the following content
 
-``
-<VirtualHost *:80>
+``<VirtualHost *:80>
         ServerName baudson_de
 
         ServerAdmin dev@baudson.de
@@ -23,8 +22,7 @@ Create a virtual host configuration file `001-baudson_de.conf` in Apache, typica
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-``
+</VirtualHost>``
 
 Add configuration to Apache
 
