@@ -29,7 +29,7 @@ Create a virtual host configuration file `001-baudson_de.conf` in Apache, typica
 Add configuration to Apache
 
 ```
-a2ensite 001-baudson_de.conf
+sudo a2ensite 001-baudson_de.conf
 ```
 
 and reload the service
