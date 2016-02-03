@@ -6,6 +6,8 @@ I'm a software developer at [REWE Digital](https://www.rewe-group.com/de/unterne
 
 Because I always forget.
 
+First, install php5 and apache2 via `sudo apt-get install php5`. Then enable Apache's rewrite module via `sudo a2enmod rewrite`.
+
 Create a virtual host configuration file `001-baudson_de.conf` in Apache, typically at `/etc/apache2/sites-available/`, with the following content
 
 ```ApacheConf
