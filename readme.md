@@ -8,7 +8,7 @@ Because I always forget.
 
 Create a virtual host configuration file `001-baudson_de.conf` in Apache, typically at `/etc/apache2/sites-available/`, with the following content
 
-```
+```XML
 <VirtualHost *:80>
         ServerName baudson_de
 
