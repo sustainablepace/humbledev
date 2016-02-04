@@ -1,6 +1,6 @@
-# baudson dev blog
+# The humble developer
 
-I'm a software developer at [REWE Digital](https://www.rewe-group.com/de/unternehmen/vertriebslinien/rewe-digital).
+A journal of things learnt along the way.
 
 ## Installation
 
@@ -8,16 +8,16 @@ Because I always forget.
 
 First, install php5 and apache2 via `sudo apt-get install php5`. Then enable Apache's rewrite module via `sudo a2enmod rewrite`.
 
-Create a virtual host configuration file `001-baudson_de.conf` in Apache, typically at `/etc/apache2/sites-available/`, with the following content
+Create a virtual host configuration file `001-humbledev.conf` in Apache, typically at `/etc/apache2/sites-available/`, with the following content
 
 ```ApacheConf
 <VirtualHost *:80>
-        ServerName baudson_de
+        ServerName humbledev
 
         ServerAdmin dev@baudson.de
-        DocumentRoot /home/christoph/projects/baudson
+        DocumentRoot /home/christoph/projects/humbledev
 
-        <Directory /home/christoph/projects/baudson/>
+        <Directory /home/christoph/projects/humbledev/>
         	Options Indexes FollowSymLinks
 	        AllowOverride All
         	Require all granted
@@ -31,7 +31,7 @@ Create a virtual host configuration file `001-baudson_de.conf` in Apache, typica
 Add configuration to Apache
 
 ```
-sudo a2ensite 001-baudson_de.conf
+sudo a2ensite 001-humbledev.conf
 ```
 
 and reload the service
