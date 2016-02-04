@@ -6,22 +6,13 @@ Contact
 
 Description:
 
-This could be an awesome contact page.
+Contact page
 
 ----
 
 Text:
 
-My name is __Christoph Baudson__ and I work for [REWE Digital GmbH](http://www.rewe-group.com/en/unternehmen/vertriebslinien/rewe-digital). Opinions expressed here are my own and not my employer's.
-
-Feel free to contact me via [e-mail](mailto:dev@baudson.de).
-
-You can also find me here
-
-- [Github](https://github.com/sustainablepace)
-- [Stack Overflow](http://stackoverflow.com/users/705616/sustainablepace)
-- [Xing](https://www.xing.com/profile/Christoph_Baudson)
-- [Linked In](https://linkedin.com/in/christoph-baudson-2ab15778)
+My name is __Christoph Baudson__, feel free to contact me via [e-mail](mailto:dev@baudson.de) or check out my other [web profiles](http://www.baudson.de).
 
 And of course, the obligatory legal mumbo jumbo...
 
