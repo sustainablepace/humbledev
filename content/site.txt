@@ -1,21 +1,22 @@
 Title:
 
-Baseblog
+The humble developer
 
 ----
 
 Author:
 
-Sascha Lack
+Christoph Baudson
 
 ----
 
 Description:
 
-A nice & clean basic blog theme for Kirby
+A journal of things learnt along the way
 
 ----
 
 Info:
 
-© 2012-(date: Year) (link: http://baseblog.sashtown.de text: Baseblog) by (link: http://sashtown.de text: Sascha Lack) | Based on (link: http://getkirby.com text: Kirby) | (link: feed text: RSS Feed)
+© 2015-(date: Year) (link: http://baudson.de text: The humble software developer) by (link: http://baudson.de text: Christoph Baudson) | (link: feed text: RSS Feed)
+Based on (link: http://getkirby.com text: Kirby) and the (link: http://baseblog.sashtown.de text: Baseblog) theme

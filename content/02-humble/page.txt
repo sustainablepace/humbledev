@@ -1,0 +1,31 @@
+Title:
+
+Humble
+
+----
+
+Description:
+
+Why humble?
+
+----
+
+Text:
+
+There is something new to learn every day - and so much I don't know.
+
+The more I learn the less I know - when you learn, dozens of new paths open up. 
+
+This is why this blog is called __The humble developer__. 
+We can't know everything. 
+We can't even know a lot.
+
+So I want to chronicle what I pick up along the way, because 
+
+- writing things down helps me __focus__ and __understand__.
+- we can __connect__ and have a shared learning experience. 
+- I can __look up__ things I have forgotten.
+- I can __give back__ to the web community.
+
+
+

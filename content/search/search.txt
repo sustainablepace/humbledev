@@ -6,4 +6,4 @@ Search
 
 Description:
 
-Search page for Baseblog.
+Search page.

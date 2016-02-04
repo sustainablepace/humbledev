@@ -2,3 +2,5 @@
 /site/accounts
 /assets/avatars
 /thumbs/*
+site/config/keys.php
+*~

@@ -12,12 +12,48 @@ This could be an awesome contact page.
 
 Text:
 
-Baseblog is made to give you a nice and clean start when it comes to creating a blog with Kirby. It allows you to setup your posts and pages quickly, so you can easily customize it and just start blogging right away.
+My name is __Christoph Baudson__ and I work for [REWE Digital GmbH](http://www.rewe-group.com/en/unternehmen/vertriebslinien/rewe-digital). Opinions expressed here are my own and not my employer's.
 
-If you have any questions about the theme don't hesitate to drop me a line.
+Feel free to contact me via [e-mail](mailto:dev@baudson.de).
 
-<mail@sashtown.de> | (twitter: @sashtown)
+You can also find me here
 
-This theme is free to use with your (link: http://getkirby.com/buy text: Kirby license). If you still want to support its further development and say thanks you're welcome to do so by clicking the button below. It'll help you sending some bucks via PayPal.
+- [Github](https://github.com/sustainablepace)
+- [Stack Overflow](http://stackoverflow.com/users/705616/sustainablepace)
+- [Xing](https://www.xing.com/profile/Christoph_Baudson)
+- [Linked In](https://linkedin.com/in/christoph-baudson-2ab15778)
 
-(link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9RBGZCYTNR2EC text: Buy this dude a protein shake class: button popup: yes)
+And of course, the obligatory legal mumbo jumbo...
+
+## Angaben gemäß § 5 TMG: ##
+
+Christoph Baudson
+Adolfstr. 104
+53111 Bonn
+Germany
+
+## Kontakt: ##
+
+Telefon: +49 228 9140959
+E-Mail:	dev@baudson.de
+
+## Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: ##
+
+Christoph Baudson
+Adolfstr. 104
+53111 Bonn
+Germany
+
+## Haftungsausschluss (Disclaimer) ##
+
+### Haftung für Inhalte ###
+
+Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+
+### Haftung für Links ###
+
+Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.
+
+### Urheberrecht ###
+
+Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
