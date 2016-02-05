@@ -1,6 +1,6 @@
 Title:
 
-Humble
+Do-It-Yourself Team Values Kit (german version)
 
 ----
 
@@ -24,4 +24,4 @@ agile retrospective
 
 Text:
 
-You may be familiar with Jurgen Appelo's [Do-It-Yourself Team Values Kit](http://www.noop.nl/2009/10/the-do-it-yourself-team-values-kit.html). A few years ago I tried that with my team, and made a [big-list-of-50-virtues-german.pdf](german translation of the Big List of 50 Virtues). As the differences between the virtues are quite subtle, a translation helped my team make the most of it. Maybe you'll find it useful.
+You may be familiar with Jurgen Appelo's [Do-It-Yourself Team Values Kit](http://www.noop.nl/2009/10/the-do-it-yourself-team-values-kit.html). A few years ago I tried that with my team, and made a [german translation of the Big List of 50 Virtues](big-list-of-50-virtues-german.pdf). As the differences between the virtues are quite subtle, a translation helped my team make the most of it. Maybe you'll find it useful.
