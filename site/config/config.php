@@ -18,6 +18,9 @@ http://getkirby.com/license
 */
 include_once 'keys.php';
 
+if(!defined('KIRBY_LICENSE')) die('No license');
+c::set('license', KIRBY_LICENSE);
+
 /*
 
 ---------------------------------------
