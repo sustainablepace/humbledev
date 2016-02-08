@@ -19,7 +19,9 @@ Alternativ zum Browser-Add-On oder innerhalb von Browsern auf mobilen Geräten, 
 ### Datenschutzerklärung für die Nutzung von Google Adsense ###
 
 Diese Website benutzt Google AdSense, einen Dienst zum Einbinden von Werbeanzeigen der Google Inc. ("Google"). Google AdSense verwendet sog. "Cookies", Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website ermöglicht. Google AdSense verwendet auch so genannte Web Beacons (unsichtbare Grafiken). Durch diese Web Beacons können Informationen wie der Besucherverkehr auf diesen Seiten ausgewertet werden.
+
 Die durch Cookies und Web Beacons erzeugten Informationen über die Benutzung dieser Website (einschließlich Ihrer IP-Adresse) und Auslieferung von Werbeformaten werden an einen Server von Google in den USA übertragen und dort gespeichert. Diese Informationen können von Google an Vertragspartner von Google weiter gegeben werden. Google wird Ihre IP-Adresse jedoch nicht mit anderen von Ihnen gespeicherten Daten zusammenführen.
+
 Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website voll umfänglich nutzen können. Durch die Nutzung dieser Website erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und Weise und zu dem zuvor benannten Zweck einverstanden.
  
 ### Datenschutzerklärung für die Nutzung von Twitter ###
@@ -27,3 +29,9 @@ Sie können die Installation der Cookies durch eine entsprechende Einstellung Ih
 Auf unseren Seiten sind Funktionen des Dienstes Twitter eingebunden. Diese Funktionen werden angeboten durch die Twitter Inc., Twitter, Inc. 1355 Market St, Suite 900, San Francisco, CA 94103, USA. Durch das Benutzen von Twitter und der Funktion "Re-Tweet" werden die von Ihnen besuchten Webseiten mit Ihrem Twitter-Account verknüpft und anderen Nutzern bekannt gegeben. Dabei werden auch Daten an Twitter übertragen.
 Wir weisen darauf hin, dass wir als Anbieter der Seiten keine Kenntnis vom Inhalt der übermittelten Daten sowie deren Nutzung durch Twitter erhalten. Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von Twitter unter (link:http://twitter.com/privacy).
 Ihre Datenschutzeinstellungen bei Twitter können Sie in den Konto-Einstellungen unter (link:http://twitter.com/account/settings) ändern.
+
+### Disqus ### 
+
+Wir nutzen das DISQUS-Kommentarsystem, das von der Firma DISQUS Inc., 301 Howard St., Suite 300, San Francisco, CA 94105, USA, bereitgestellt wird. Die Datenschutzinformationen von DISQUS finden Sie (link:https://help.disqus.com/customer/portal/topics/215159-terms-and-policies/articles text:hier). DISQUS erlaubt die Anmeldung entweder über ein eigenes DISQUS-Nutzer-Konto oder über bestehende Nutzer-Konten bei Facebook, Twitter und Google Plus. Sofern Sie sich mit Ihren Accounts der Social-Media-Angebote bei der DISQUS-Funktion auf unseren Webseiten anmelden, werden auch diese Diensteanbieter Informationen zu Ihrer Nutzung der DISQUS-Funktionen erheben und verarbeiten. Weitere Informationen hierzu finden Sie in den Datenschutzinformationen der jeweiligen Anbieter.
+
+DISQUS übermittelt die E-Mail-Adresse der Benutzer und die IP-Adresse, die während der Eingabe eines Kommentars verwendet wurde, an lawblog.de. Wir benötigen diese Information ausschließlich für den Zweck der Kontaktaufnahme im Zusammenhang mit Ihrer Nutzung von DISQUS. Eine unerlaubte Weitergabe an Dritte erfolgt nicht.
