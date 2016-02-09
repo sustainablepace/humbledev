@@ -40,6 +40,7 @@ There was some discussion at work about whether it is a good idea to implement a
 > "For the most part, the need for ACID transactions in a SOA or REST environment is actually a design smell — you’ve likely modeled your services or resources the wrong way."
 
 > (link:http://www.infoq.com/articles/tilkov-rest-doubts text:Stefan Tilkov on transactions and REST)
+
  
 > "If you find yourself in need of a distributed transaction protocol, then how can you possibly say that your architecture is based on REST? I simply cannot see how you can get from one situation (of using RESTful application state on the client and hypermedia to determine all state transitions) to the next situation of needing distributed agreement of transaction semantics wherein the client has to tell the server how to manage its own resources."
 
