@@ -17,9 +17,7 @@ Date:
 
 Tags:
 
-#microservices
-#architecture 
-#rest
+microservices,architecture,rest
 
 ----
 
