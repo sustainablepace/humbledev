@@ -1,0 +1,46 @@
+Title:
+
+Transactions in distributed systems
+----
+
+Description:
+
+Transactions in distributed systems
+
+----
+
+Date:
+
+02/094/2016
+
+----
+
+Tags:
+
+microservices architecture rest
+
+----
+
+Text:
+
+There was some discussion at work about whether it is a good idea to implement a transaction-based workflow in a RESTful microservice environment. I have come to the conclusion that this is NOT the way to go.
+
+Here's the research behind the conclusion:
+
+## Transactions and microservices ##
+
+> Using transactions like this helps with consistency, but imposes significant temporal coupling, which is problematic across multiple services. Distributed transactions are notoriously difficult to implement and and as a consequence microservice architectures emphasize transactionless coordination between services, with explicit recognition that consistency may only be eventual consistency and problems are dealt with by compensating operations.
+
+> Choosing to manage inconsistencies in this way is a new challenge for many development teams, but it is one that often matches business practice. Often businesses handle a degree of inconsistency in order to respond quickly to demand, while having some kind of reversal process to deal with mistakes. The trade-off is worth it as long as the cost of fixing mistakes is less than the cost of lost business under greater consistency.
+
+- (link:http://martinfowler.com/articles/microservices.html text:Martin Fowler on transactions and microservices)
+
+## Transactions and REST ##
+
+> For the most part, the need for ACID transactions in a SOA or REST environment is actually a design smell — you’ve likely modeled your services or resources the wrong way.
+
+- (link:http://www.infoq.com/articles/tilkov-rest-doubts text:Stefan Tilkov on transactions and REST)
+ 
+> If you find yourself in need of a distributed transaction protocol, then how can you possibly say that your architecture is based on REST? I simply cannot see how you can get from one situation (of using RESTful application state on the client and hypermedia to determine all state transitions) to the next situation of needing distributed agreement of transaction semantics wherein the client has to tell the server how to manage its own resources.
+
+- (link: http://www.infoq.com/news/2009/06/rest-ts text:Roy Fielding on transactions and REST)
