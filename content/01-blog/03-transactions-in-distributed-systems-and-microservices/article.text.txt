@@ -29,6 +29,8 @@ There was some discussion at work about whether it is a good idea to implement a
 
 ## Transactions and microservices ##
 
+Martin Fowler argues that transactions would couple services, while the idea of a microservice architecture is a "shared nothing architecture"
+
 > "Using transactions like this helps with consistency, but imposes significant temporal coupling, which is problematic across multiple services. Distributed transactions are notoriously difficult to implement and and as a consequence microservice architectures emphasize transactionless coordination between services, with explicit recognition that consistency may only be eventual consistency and problems are dealt with by compensating operations.
 
 > Choosing to manage inconsistencies in this way is a new challenge for many development teams, but it is one that often matches business practice. Often businesses handle a degree of inconsistency in order to respond quickly to demand, while having some kind of reversal process to deal with mistakes. The trade-off is worth it as long as the cost of fixing mistakes is less than the cost of lost business under greater consistency."
@@ -37,10 +39,13 @@ There was some discussion at work about whether it is a good idea to implement a
 
 ## Transactions and REST ##
 
+Stefan Tilkov sees transactions as a design smell
+
 > "For the most part, the need for ACID transactions in a SOA or REST environment is actually a design smell — you’ve likely modeled your services or resources the wrong way."
 
 > (link:http://www.infoq.com/articles/tilkov-rest-doubts text:Stefan Tilkov on transactions and REST)
 
+Roy Fielding argues that transactions (in the form of a distributed transaction protocol) are not RESTful
  
 > "If you find yourself in need of a distributed transaction protocol, then how can you possibly say that your architecture is based on REST? I simply cannot see how you can get from one situation (of using RESTful application state on the client and hypermedia to determine all state transitions) to the next situation of needing distributed agreement of transaction semantics wherein the client has to tell the server how to manage its own resources."
 
