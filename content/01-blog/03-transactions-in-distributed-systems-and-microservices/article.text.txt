@@ -37,7 +37,7 @@ Martin Fowler argues that transactions would couple services, while the idea of 
 
 ## Transactions and REST ##
 
-Stefan Tilkov sees transactions as a design smell
+Stefan Tilkov regards transactions as a design smell in a REST environment
 
 > "For the most part, the need for ACID transactions in a SOA or REST environment is actually a design smell — you’ve likely modeled your services or resources the wrong way."
 
