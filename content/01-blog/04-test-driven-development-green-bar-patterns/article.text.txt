@@ -24,25 +24,39 @@ tdd,kent beck,green bar patterns,test-driven development
 
 Text:
 
-Quite recently I attended a traing for Agile Developer Skills. It was a great opportunity to revisit and update my understanding of Test-Driven Development (TDD).
+Quite recently I attended a training for Agile Developer Skills. It was a great opportunity to revisit and update my understanding of Test-Driven Development (TDD).
 
 ## Why Test-Driven Development? ##
 
 The point of TDD is to write code that is modular and testable. Think of a test as the first user of your production code: If even you struggle to write tests for your code, how hard must it be for another developer to use it in the context of a real application? 
 
-### Test-Driven vs. Test-first ###
+### The TDD Cycle ###
+
+Test-Driven development is a cycle of three stages
+
+- writing test code
+- writing implementation code
+- refactoring
+
+Just take a look at the diagram:
+
+(image:01.jpg)
+
+### The importance of refactoring ###
 
 My approach to TDD so far had more been Test-first - writing a failing test, then implementing functionality, and by this making the test pass, and repeat. I wasn't aware that refactoring is only meant to take place during the "green" phase, so you are sure that nothing breaks during refactoring, and you stay on the "green path" most of the time. 
 
 I was never that strict about it, but it makes sense to have the ability to check whether your refactoring is still a valid implementation. It also leads to working in significantly smaller steps, which is good for your motivation - you hardly ever feel stuck and seem to make constant progress.
 
-Here's a diagram that reflects the cycle of writing test code, writing implementation code, and refactoring:
-
-(image:01.jpg)
+Refactoring repeatedly also leads to more concise and clean code - you don't defer cleaning it up to "when you have the time" (which you never will have). To me this is an almost buddhist meditation ritual.
 
 ## Green bar patterns ##
 
-Another thing I learned was that there are three well-defined workflows in TDD, which Kent Beck named "Green Bar Patterns" (the green bar being the indicator that your tests are still passing). These patterns help you to be working on the green path, or to return to it as soon as possible.
+Another thing I learned was that there are three well-defined workflows in TDD, which Kent Beck introduced in "test-Driven Development by Example". 
+
+(image:02.jpg)
+
+The workflows are named "Green Bar Patterns" (the green bar being the indicator that your tests are still passing). These patterns help you to be working on the green path, or to return to it as soon as possible.
 
 ### Obvious implementation ###
 
@@ -62,7 +76,7 @@ This approach is forcing you to work in very small increments, until you find a 
 
 The idea is to get the test to pass as soon as possible. Once it is, you can refine the fake in the refactoring phase. You can always check if you are on the right way, just run your tests, they should always pass.
 
-This approach is great if you __already have an idea__ about a possible implementation, but can't quite see it through. The small increments slowly lead you to your goal.
+This approach is great if you __already have an idea__ about a possible implementation, but can't quite see it through. The small increments slowly lead you towards your goal.
 
 ### Triangulation ###
 
@@ -70,4 +84,4 @@ In contrast to the "Fake it" approach, triangulation suggests adding more test c
 
 Having another test gives you another perspective and also gives you a security net - your implementation fulfills a constantly growing set of criteria. If you are not sure where to go with your implementation, triangulation is worth a try.
 
-Once you feel more secure about your implementation idea, switch back to "Fake it" or "Obvious implementation".
+Once you feel more secure about your implementation idea, switch back to "Fake it" or "Obvious implementation" - but remember that your test code is just as valuable as your production code, and refactor your test code as rigorously as your production code.
