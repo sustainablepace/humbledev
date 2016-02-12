@@ -1,0 +1,58 @@
+Title:
+
+The Three Amigos
+
+----
+
+Description:
+
+The Three Amigos - a stronger collaboration of developers, testers and product owners
+
+----
+
+Date:
+
+02/12/2016
+
+----
+
+Tags:
+
+agile,example mapping,attd,acceptance criteria
+
+----
+
+Text:
+
+During an Agile Testing workshop I learned about the Three Amigos concept and Example Mapping, two interesting ideas for creating better acceptance criteria for user stories. I'll talk about the Three Amigos now and about Example Mapping later on.
+
+## Origin and definition ##
+
+Borrowing the title from the (text:1986 comedy link:https://www.youtube.com/watch?v=WUTl8DSYUQA), in the agile context Three Amigos means the continuous collaboration of 
+
+- Developers
+- Testers
+- Product Owners
+
+in order to refine acceptance criteria for user stories.
+
+It's not strictly limited to these three parties, it is more about bringing different perspectives in as early as possible, resulting in higher quality requirements. You don't want a Product Owner to make up acceptance criteria for user stories all on his or her own!
+
+## Conversations and shared understanding ##
+
+The goal of the Three Amigos is not to produce artifacts like BDD tests or enhanced JIRA issues, it's more about creating a shared understanding and identifying problems early on. The Three Amigos work with user stories, which are first of all tokens representing the conversations happening about them. 
+
+So the value of The Three Amigos cannot be measured by the artifacts they produce. Of course this doesn't mean that creating artifacts is forbidden - just value the shared understanding more than the artifacts. 
+
+There are teams that only add stories to their sprints which have been "amigo-ed", making it part of the team's Definition-Of-Ready.
+
+## Agile mindset ##
+
+While the concept of a (link:https://gojko.net/2008/11/12/specification-workshops-an-agile-way-to-get-better-requirements/ text:specification workshop exists (a meeting where Three Amigos work on user stories and refine acceptance criteria), it should rather be seen as a mindset - remember the corresponding agile principle 
+
+> "Business people and developers must work together daily throughout the project."
+>
+> (link:http://www.agilemanifesto.org/principles.html text:Principles behind the Agile Manifesto)
+
+Just like backlog grooming should be a continuous effort and not a regularly scheduled meeting, the Three Amigos should rather be seen as a pairing than a meeting - You actually do the work, not talk about it!
+
