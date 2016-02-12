@@ -1,3 +1,29 @@
+Title:
+
+Test-Driven Development with Green Bar Patterns
+
+----
+
+Description:
+
+Test-Driven Development with Green Bar Patterns
+
+----
+
+Date:
+
+02/12/2016
+
+----
+
+Tags:
+
+tdd,kent beck,green bar patterns,test-driven development
+
+----
+
+Text:
+
 Quite recently I attended a traing for Agile Developer Skills. It was a great opportunity to revisit and update my understanding of Test-Driven Development.
 
 == Why TDD? ==
