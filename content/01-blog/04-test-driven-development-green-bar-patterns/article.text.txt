@@ -34,9 +34,9 @@ The point of TDD is to write code that is modular and testable. Think of a test 
 
 My approach to TDD so far had more been Test-first - writing a failing test, then implementing functionality, and by this making the test pass, and repeat. I wasn't aware that refactoring is only meant to take place during the "green" phase, so you are sure that nothing breaks during refactoring, and you stay on the "green path" most of the time. 
 
-I was never that strict about it, but it makes sense to have the ability to check whether your refactoring is still a valid implementation. It also leads to working in significantly smaller steps, which is good for your motivation - you hardly ever feel stuck and seem to make constant progress..
+I was never that strict about it, but it makes sense to have the ability to check whether your refactoring is still a valid implementation. It also leads to working in significantly smaller steps, which is good for your motivation - you hardly ever feel stuck and seem to make constant progress.
 
-Here's a nice diagram that reflects the cycle of test, implementation and refactoring:
+Here's a diagram that reflects the cycle of writing test code, writing implementation code, and refactoring:
 
 (image:01.jpg)
 
