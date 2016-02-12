@@ -48,7 +48,7 @@ My approach to TDD so far had more been Test-first - writing a failing test, the
 
 I was never that strict about it, but it makes sense to have the ability to check whether your refactoring is still a valid implementation. It also leads to working in significantly smaller steps, which is good for your motivation - you hardly ever feel stuck and seem to make constant progress.
 
-Refactoring repeatedly also leads to more concise and clean code - you don't defer cleaning it up to "when you have the time" (which you never will have). To me this is an almost buddhist meditation ritual.
+Refactoring repeatedly also leads to more concise and clean code - you don't defer cleaning it up to "when you have the time" (which you never will have).
 
 ## Green bar patterns ##
 
@@ -85,3 +85,9 @@ In contrast to the "Fake it" approach, triangulation suggests adding more test c
 Having another test gives you another perspective and also gives you a security net - your implementation fulfills a constantly growing set of criteria. If you are not sure where to go with your implementation, triangulation is worth a try.
 
 Once you feel more secure about your implementation idea, switch back to "Fake it" or "Obvious implementation" - but remember that your test code is just as valuable as your production code, and refactor your test code as rigorously as your production code.
+
+## Meaning ##
+
+I don't really think that Test-Driven Development is inherently superior to other forms of programming. I think of it more as a mindset, or a way of life. To me TDD has a spiritual, buddhist feel to it, as you are very much in the moment, taking one step after the other, without hurrying or worrying what is around the corner. I'm very much reminded of a specific (link:https://vajrablue.com/2015/10/08/buddhism-and-washing-up/ text:koan). 
+
+For me Test-Driven Development is about feeling at peace and staying sane while programming, and not so much about the result - but still, I think I deliver better code when employing TDD.
