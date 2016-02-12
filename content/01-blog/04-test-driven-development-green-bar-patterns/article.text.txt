@@ -30,7 +30,7 @@ Quite recently I attended a traing for Agile Developer Skills. It was a great op
 
 The point of TDD is to write code that is modular and testable. Think of a test as the first user of your production code: If even you struggle to write tests for your code, how hard must it be for another developer to use it in the context of a real application? 
 
-## Test-Driven vs. Test-first ==
+## Test-Driven vs. Test-first ##
 
 My approach to TDD so far had more been Test-first - writing a failing test, then implementing functionality, and by this making the test pass, and repeat. I wasn't aware that refactoring is only meant to take place during the "green" phase, so you are sure that nothing breaks during refactoring, and you stay on the "green path" most of the time. 
 
