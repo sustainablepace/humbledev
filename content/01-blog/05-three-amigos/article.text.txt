@@ -48,7 +48,7 @@ There are teams that only add stories to their sprints which have been "amigo-ed
 
 ## Agile mindset ##
 
-While the concept of a (link:https://gojko.net/2008/11/12/specification-workshops-an-agile-way-to-get-better-requirements/ text:specification workshop exists (a meeting where Three Amigos work on user stories and refine acceptance criteria), it should rather be seen as a mindset - remember the corresponding agile principle 
+While the concept of a (link:https://gojko.net/2008/11/12/specification-workshops-an-agile-way-to-get-better-requirements/ text:specification workshop) exists (a meeting where Three Amigos work on user stories and refine acceptance criteria), it should rather be seen as a mindset - remember the corresponding agile principle 
 
 > "Business people and developers must work together daily throughout the project."
 >
