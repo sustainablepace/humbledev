@@ -28,7 +28,7 @@ During an Agile Testing workshop I learned about the Three Amigos concept and Ex
 
 ## Origin and definition ##
 
-Borrowing the title from the (text:1986 comedy link:https://www.youtube.com/watch?v=WUTl8DSYUQA), in the agile context Three Amigos means the continuous collaboration of 
+Borrowing the title from the (link:https://www.youtube.com/watch?v=WUTl8DSYUQA text:1986 Steve Martin comedy), in the agile context Three Amigos means the continuous collaboration of 
 
 - Developers
 - Testers
