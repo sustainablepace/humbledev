@@ -24,9 +24,9 @@ tdd,kent beck,green bar patterns,test-driven development
 
 Text:
 
-Quite recently I attended a traing for Agile Developer Skills. It was a great opportunity to revisit and update my understanding of Test-Driven Development.
+Quite recently I attended a traing for Agile Developer Skills. It was a great opportunity to revisit and update my understanding of Test-Driven Development (TDD).
 
-== Why TDD? ==
+## Why TDD? ##
 
 The point of TDD is to write code that is modular and testable. Think of a test as the first user of your production code: If even you struggle to write tests for your code, how hard must it be for another developer to use it in the context of a real application? 
 
@@ -38,13 +38,13 @@ I was never that strict about it, but it makes sense to have the ability to chec
 
 Here's a nice diagram that reflects the cycle of test, implementation and refactoring:
 
-(image:01.png)
+(image:01.jpg)
 
-== Green bar patterns ==
+## Green bar patterns ##
 
 Another thing I learned was that there are three well-defined workflows in TDD, which Kent Beck named "Green Bar Patterns" (the green bar being the indicator that your tests are still passing). These patterns help you to be working on the green path, or to return to it as soon as possible.
 
-=== Obvious implementation ===
+### Obvious implementation ###
 
 This is the approach I used to follow almost exclusively: just solving the problem at hand, no matter how hard it is. But the obvious implementation often is not as obvious as it might seem. 
 
@@ -56,7 +56,7 @@ Sometimes you even have to throw everything away and need to start over, or the 
 
 The lesson learned is simply that you should only follow this path if the implementation is absolutely trivial - as the name suggests, obvious. If you find yourself coding an obvious implementation, but fail to get your tests to pass, it's time to switch to one of the following approaches.
 
-=== Fake it (till you make it) ===
+### Fake it (till you make it) ###
 
 This approach is forcing you to work in very small increments, until you find a pattern or algorithm that solves your problem. When you start with a failing test, it's fine to (for example) just return a static value at first.
 
@@ -64,7 +64,7 @@ The idea is to get the test to pass as soon as possible. Once it is, you can ref
 
 This approach is great if you have a hunch about a possible implementation, but can't quite see it through. The small increments slowly lead you to your goal.
 
-=== Triangulation ===
+### Triangulation ###
 
 In contrast to the "Fake it" approach, triangulation suggests adding more test cases in order to come up with a solution. This is helpful if you realise you are faking it, but NOT getting close to making it. 
 
