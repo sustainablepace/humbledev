@@ -1,0 +1,58 @@
+Title:
+
+Usages for the Linux "watch" command
+
+----
+
+Description:
+
+Usages for the Linux "watch" command
+
+----
+
+Date:
+
+02/15/2016
+
+----
+
+Tags:
+
+linux
+
+----
+
+Text:
+
+Today I learned about the `watch` command in Linux. It's a brilliant tool for command line monitoring. Basically, it just executes a command repeatedly and displays its output in a readable format.
+
+== Examples == 
+
+=== Watch your wi-fi network traffic ===
+
+```
+watch ifconfig wlan0
+```
+
+=== Watch free disk memory ===
+
+```
+watch free
+```
+
+=== Watch a directory ===
+
+For example when downloading files
+
+```
+watch ls -lt ~/Downloads
+```
+
+== Switches ==
+
+Set the interval with `-n <seconds>` or omit the status line with `-t`. Like this
+
+```
+watch -t -n 1 ifconfig 
+```
+
