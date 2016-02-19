@@ -87,4 +87,4 @@ Maybe try an Example Mapping session in one of your grooming sessions, and find 
 
 ## Reference ##
 
-Just read the (link: https://cucumber.io/blog/2015/12/08/example-mapping-introduction text:blog post by Matt Wynne, the creator of Example Mapping, for a definitive introduction.
+Just read the (link: https://cucumber.io/blog/2015/12/08/example-mapping-introduction text:blog post) by Matt Wynne, the creator of Example Mapping, for a definitive introduction.
