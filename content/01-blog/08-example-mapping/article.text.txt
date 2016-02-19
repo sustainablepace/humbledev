@@ -65,7 +65,13 @@ The first obvious example would be parking for 5 hours (blue card), with a price
 
 The amigos would also ask about the pricing for overnight parking, as it spans two days. The product owner would realize that the rules needed refinement, and would replace _day_ by _24 hours_. And it would yield in more blue cards, parking for exactly 24 hours and slightly longer than 24 hours.
 
-Maybe the amigos (most likely the tester) would address more edge cases, like daylight savings time), which would produce even more blue cards.
+Maybe the amigos (most likely the tester) would address more edge cases, like daylight savings time), which would produce even more blue cards. Take a look at the photographs for examples (german language).
+
+(image:01.jpg)
+
+(image:02.jpg)
+
+(image:03.jpg)
 
 ## Benefit ##
 
