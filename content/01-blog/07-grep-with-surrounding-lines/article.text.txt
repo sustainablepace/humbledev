@@ -24,7 +24,7 @@ linux,command line,maven
 
 Text:
 
-Yesterday I wanted to find maven dependency in my project, that itself depended on another dependency that had a security issue and needed updating.
+Yesterday I wanted to find a maven dependency in my project, that itself depended on another dependency, which had a security issue and needed updating.
 
 The command 
 
@@ -40,9 +40,9 @@ mvn dependency:tree | grep "<name>"
 
 which confirmed the dependency was present, but not in which context. Fortunately there are the following switches 
 
-- `-A <number>` number of lines to be displayed __after__ the match
-- `-B <number>` number of lines to be displayed __before__ the match
-- `-C <number>` number of lines to be displayed __before and after__ the match
+- `-A <number>` : number of lines to be displayed __after__ the match
+- `-B <number>` : number of lines to be displayed __before__ the match
+- `-C <number>` : number of lines to be displayed __before and after__ the match
 
 So I was able to find the dependency in my project with
 
