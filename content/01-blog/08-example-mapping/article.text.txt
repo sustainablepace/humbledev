@@ -26,9 +26,9 @@ Text:
 
 I already wrote about the concept of the (link:blog/three-amigos text:Three Amigos), this time I want to share a method to facilitate the refinement of __user stories__ and the creation of __acceptance criteria__, named __Example Mapping__.
 
-The problem with getting user stories and acceptance criteria right is that often there is not enough collaboriation - just remember the Agile Principle
+The problem with getting user stories and acceptance criteria right is that often there is not enough collaboration - just remember the Agile Principle
 
-> Business people and developers must work together daily throughout the project."
+> "Business people and developers must work together daily throughout the project."
 >
 > (link:http://www.agilemanifesto.org/principles.html text:Principles behind the Agile Manifesto)
 
@@ -36,18 +36,18 @@ Example Mapping is an __effective__ and __playful__ way of solving this problem.
 
 ## Rules vs. Examples ##
 
-There are different ways to describe acceptance criteria, rules or examples. While __rules__ are generalizations and by this often broad and ambiguous, __examples__ are specific and easy to understand. Often an underlying rule is not yet clear, while a single example is. 
+There are different ways to describe acceptance criteria, like rules or examples. While __rules__ are generalizations and by this often broad and ambiguous, __examples__ are specific and easy to understand. Often an underlying rule is not yet clear, while a single example is. 
 
 ## Example Mapping ##
 
-The idea of Example Mapping is to create acceptance criteria for __user stories__ by mapping __examples__ to __rules__. By this, you generate better rules and in general, discover issues that are not yet addressed in the story. You write theses issues down as __questions__, they can trigger new rules, or are simple a token for deferring the issue.
+The idea of Example Mapping is to create acceptance criteria for __user stories__ by mapping __examples__ to __rules__. By this, you generate better rules and in general, discover issues that are not yet addressed in the story. You write these issues down as __questions__, they can trigger new rules, or are simple a token for deferring the issue.
 
 You need index cards with four colours. Each card corresponds to one of the artifacts mentioned above
 
-> GREEN    <-> Story
-> YELLOW   <-> Rule
-> BLUE     <-> Example
-> RED      <-> Question
+> Yellow ↔ Story
+> Blue ↔ Rule
+> Green ↔ Example
+> Red ↔ Question
 
 ### Example ###
 
@@ -59,13 +59,13 @@ Imagine we were to design a machine that calculates the price of parking tickets
 
 with each site having its own set of rules how a ticket price is calculated. 
 
-When discussing the user story "as a user I want use valet parking in order to save time" (green card), the product owner would for example explain that the price is 6€ for the first hour (first yellow card), with a maximum of 18€ per day (second yellow card).
+When discussing the user story "as a user I want use valet parking in order to save time" (yellow card), the product owner would for example explain that the price is 6€ for the first hour (a blue card), with a maximum of 18€ per day (another blue card).
 
-The first obvious example would be parking for 5 hours (blue card), with a price of 6€, and a blue card for parking a little longer than five hours (another blue card), with a price of 18€. 
+The first obvious example would be parking for 5 hours (green card), with a price of 6€, and a blue card for parking a little longer than five hours (another green card), with a price of 18€. 
 
-The amigos would also ask about the pricing for overnight parking, as it spans two days. The product owner would realize that the rules needed refinement, and would replace _day_ by _24 hours_. And it would yield in more blue cards, parking for exactly 24 hours and slightly longer than 24 hours.
+The amigos would also ask about the pricing for overnight parking, as it spans two days. The product owner would realize that the rules needed refinement, and would replace _day_ by _24 hours_. And it would yield in more green cards, parking for exactly 24 hours and slightly longer than 24 hours.
 
-Maybe the amigos (most likely the tester) would address more edge cases, like daylight savings time), which would produce even more blue cards. Take a look at the photographs for examples (german language).
+Maybe the amigos (most likely the tester) would address more edge cases, like daylight savings time), which would produce even more cards. Take a look at the photographs for examples (german language).
 
 (image:01.jpg)
 
@@ -85,3 +85,6 @@ Writing on index cards and pinning them on a board is more fun than staring at a
 
 Maybe try an Example Mapping session in one of your grooming sessions, and find out if it works for you!
 
+## Reference ##
+
+Just read the (link: https://cucumber.io/blog/2015/12/08/example-mapping-introduction text:blog post by Matt Wynne, the creator of Example Mapping, for a definitive introduction.
