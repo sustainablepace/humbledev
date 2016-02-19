@@ -49,7 +49,7 @@ You need index cards with four colours. Each card corresponds to one of the arti
 > Green ↔ Example
 > Red ↔ Question
 
-### Example ###
+### Scenario: Parking price calculation ###
 
 Imagine we were to design a machine that calculates the price of parking tickets at the airport. There could be different parking sites like
 
