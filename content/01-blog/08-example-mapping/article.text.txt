@@ -67,7 +67,15 @@ The amigos would also ask about the pricing for overnight parking, as it spans t
 
 Maybe the amigos (most likely the tester) would address more edge cases, like daylight savings time), which would produce even more blue cards.
 
-__
- 
-Rules are what is needed for implementation, examples are for test cases, so you need both of them anyway.
-To me this is similar to natural sciences, where you have laws like the law of gravity, and you try to create tests so you can measure and get data to prove or refine the laws of nature.
+## Benefit ##
+
+Example mapping enhances the shared understanding of user stories by refining them in collaboration. 
+
+The product owner no longer has to make the acceptance criteria up on his own, their quality increases, and developers and testers can estimate with more confidence.
+
+The rules can be used as a guidance for an implementation, while the examples can be used as templates for test cases.
+
+Writing on index cards and pinning them on a board is more fun than staring at a screen displaying an issue tracker, there is more interaction and exeryone is in an active state of mind.
+
+Maybe try an Example Mapping session in one of your grooming sessions, and find out if it works for you!
+
