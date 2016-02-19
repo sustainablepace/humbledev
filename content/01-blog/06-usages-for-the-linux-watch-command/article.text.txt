@@ -34,7 +34,7 @@ Today I learned about the `watch` command in Linux. It's a brilliant tool for co
 watch ifconfig wlan0
 ```
 
-### Watch free disk memory ###
+### Watch free memory ###
 
 ```
 watch free
