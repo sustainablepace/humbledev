@@ -24,7 +24,7 @@ agile,backlog grooming,example mapping,three amigos,acceptance criteria,atdd
 
 Text:
 
-I already wrote about the concept of the [Three Amigos](), this time I want to share a method to facilitate the refinement of __user stories__ and the creation of __acceptance criteria__, named __Example Mapping__.
+I already wrote about the concept of the (link:three-amigos text:Three Amigos), this time I want to share a method to facilitate the refinement of __user stories__ and the creation of __acceptance criteria__, named __Example Mapping__.
 
 The problem with getting user stories and acceptance criteria right is that often there is not enough collaboriation - just remember the Agile Principle
 
