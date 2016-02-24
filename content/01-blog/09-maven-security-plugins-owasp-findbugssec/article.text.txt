@@ -152,23 +152,3 @@ mvn findbugs:gui
 If the plugin finds any security issues in your dependencies, the build will break and you will be given a list of CVE-IDs (__c__ommon __v__ulnerabilities and __e__xposures), for example `CVE-2015-4335`. There are some great resources with infos on these issues, like the (link:https://web.nvd.nist.gov text:National Cyber Awareness System) or (link:https://cve.mitre.org/ text: MITRE). There you'll find which versions are affected by the vulnerability, so you can update your `pom.xml` accordingly. 
 
 If you don't know which dependency includes the affected package, try finding it by (link:/blog/grep-with-surrounding-lines text:grepping the Maven dependency tree).
-
-## Other plugins ##
-
-Another great plugin is the Maven enforcer plugin, which has great functionalities that are also related to security.
-
-### Dependency convergence ###
-
-> Requires that dependency version numbers converge. If a project has two dependencies, A and B, both depending on the same artifact, C, this rule will fail the build if A depends on a different version of C then the version of C depended on by B.
-
-### Ban circular dependencies ###
-
-> Checks the dependencies and fails if the groupId:artifactId combination exists in the list of direct or transitive dependencies.
-
-### Ban duplicate classes ###
-
-> Checks the dependencies and fails if any class is present in more than one dependency.
-
-### Enforce bytecode version ###
-
-> Checks the dependencies transitively and fails if any class of any dependency is having its bytecode version higher than the one specified.
