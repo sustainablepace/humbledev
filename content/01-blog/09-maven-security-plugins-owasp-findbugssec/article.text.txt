@@ -1,0 +1,27 @@
+Title:
+
+Maven security plugins
+
+----
+
+Description:
+
+
+Add security plugins to your Maven build with FindbugsSec and OWASP dependency check
+
+----
+
+Date:
+
+02/24/2016
+
+----
+
+Tags:
+
+maven,security,findbugs,findbugssec,owasp,dependency convergence
+
+----
+
+Text:
+
