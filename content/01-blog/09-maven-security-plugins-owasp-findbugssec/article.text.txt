@@ -149,6 +149,8 @@ mvn findbugs:gui
 
 ### OWASP dependency check ###
 
-If the plugin finds any security issues in your dependencies, the build will break and you will be given a list of CVE-IDs (__c__ommon __v__ulnerabilities and __e__xposures), for example `CVE-2015-4335`. There are some great resources with infos on these issues, like the (link:https://web.nvd.nist.gov text:National Cyber Awareness System) or (link:https://cve.mitre.org/ text: MITRE). There you'll find which versions are affected by the vulnerability, so you can update your `pom.xml` accordingly. 
+If the plugin finds any security issues in your dependencies, the build will break and you will be given a list of CVE-IDs (__c__ommon __v__ulnerabilities and __e__xposures), for example `CVE-2015-4335`. 
+
+There are some great resources with infos on these issues, like the (link:https://web.nvd.nist.gov text:National Cyber Awareness System) or (link:https://cve.mitre.org/ text: MITRE). There you'll find which versions are affected by the vulnerability, so you can update your `pom.xml` accordingly. 
 
 If you don't know which dependency includes the affected package, try finding it by (link:/blog/grep-with-surrounding-lines text:grepping the Maven dependency tree).
