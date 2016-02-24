@@ -1,0 +1,154 @@
+Title:
+
+Maven security plugins
+
+----
+
+Description:
+
+
+Add security plugins to your Maven build with FindbugsSec and OWASP dependency check
+
+----
+
+Date:
+
+02/24/2016
+
+----
+
+Tags:
+
+maven,security,findbugs,findbugssec,owasp,dependency convergence
+
+----
+
+Text:
+
+There are two great plugins that help you make your applications built in Maven more secure. I have recently added them to some projects at work and it seems to work quite well.
+
+## FindbugsSec ##
+
+You may have heard about __Findbugs__, it looks for bugs in Java programs. It is based on the concept of bug patterns. A bug pattern is a code idiom that is often an error.
+
+__FindbugsSec__ is a security plugin for Findbugs, it can detect 80 different vulnerability types with over 200 unique signatures.
+
+Just add it to your `pom.xml` like this
+
+```
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>findbugs-maven-plugin</artifactId>
+    <version>3.0.3</version>
+</plugin>
+```
+## OWASP dependency check ##
+
+__OWASP__ is the Open Web Application Security Project, an organization focused on improving the security of software. __Dependency Check__ is one of their security plugins, it identifies project dependencies and checks if there are any known, publicly disclosed, vulnerabilities.
+
+```
+<plugin>
+    <groupId>org.owasp</groupId>
+    <artifactId>dependency-check-maven</artifactId>
+    <version>1.3.3</version>
+</plugin>
+```
+
+## Build profile ##
+
+As both plugins have quite a long runtime, it's best to add them to a dedicated build profile, that can run in a continuous integration environment like Bamboo or Jenkins.
+
+```
+<profile>
+    <id>security</id>
+    <!--
+        Only to be run within the CI environment, as these plugins are really slow.
+    -->
+    <activation>
+        <activeByDefault>false</activeByDefault>
+    </activation>
+    <properties>
+        <build.profile.id>security</build.profile.id>
+    </properties>
+    <build>
+        <plugins>
+            <!--
+                identifies project dependencies and checks if there are any known, publicly disclosed,
+                vulnerabilities.
+            -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <configuration>
+                    <failBuildOnCVSS>5</failBuildOnCVSS>
+                    <suppressionFile>${project.basedir}/dependency-check-suppressions.xml</suppressionFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+                 Looks for bugs in Java programs. It is based on the concept of bug patterns.
+                 A bug pattern is a code idiom that is often an error.
+             -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>High</threshold>
+                    <failOnError>true</failOnError>
+                    <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+                    <plugins>
+                        <!--
+                            Can detect 80 different vulnerability types with over 200 unique signatures.
+                        -->
+                        <plugin>
+                            <groupId>com.h3xstream.findsecbugs</groupId>
+                            <artifactId>findsecbugs-plugin</artifactId>
+                            <version>LATEST</version>
+                        </plugin>
+                    </plugins>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</profile>
+```
+
+The plugins are bound to the `validate` phase, so you might want to run your build like this
+
+```
+mvn clean package -Psecurity
+```
+
+## Configuration and fixing issues ##
+
+### FindbugsSec ##
+
+You can set the `threshold` and `effort` attributes to modify the search results. A good idea might be to leave the settings like this, and let the build only break for severe issues. Later on you might lower the threshold in order to find more issues with a lower severity.
+
+Findbugs comes with a graphical user interface that can be started via Maven like this
+
+```
+mvn findbugs:gui
+```
+
+### OWASP dependency check ###
+
+If the plugin finds any security issues in your dependencies, the build will break and you will be given a list of CVE-IDs (__c__ommon __v__ulnerabilities and __e__xposures), for example `CVE-2015-4335`. There are some great resources with infos on these issues, like the (link:https://web.nvd.nist.gov text:National Cyber Awareness System) or (link:https://cve.mitre.org/ text: MITRE). There you'll find which versions are affected by the vulnerability, so you can update your `pom.xml` accordingly. 
+
+If you don't know which dependency includes the affected package, try finding it by (link:/blog/grep-with-surrounding-lines text:grepping the Maven dependency tree).
