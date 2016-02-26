@@ -1,0 +1,163 @@
+Title:
+
+Dependency convergence and the Maven enforcer plugin
+
+----
+
+Description:
+
+Dependency convergence and the Maven enforcer plugin
+
+----
+
+Date:
+
+02/26/2016
+
+----
+
+Tags:
+
+maven,enforcer,dependency convergence
+
+----
+
+Text:
+
+Another great plugin for security and application stability is the Maven enforcer plugin.
+
+### Dependency convergence ###
+
+> Requires that dependency version numbers converge. If a project has two dependencies, A and B, both depending on the same artifact, C, this rule will fail the build if A depends on a different version of C then the version of C depended on by B.
+
+Read more about dependency convergence in (link:http://timsteffens.blogspot.de/2014/05/solving-conflicts-with-transitive-maven.html text:Tim Steffen's blog post).
+
+### Ban circular dependencies ###
+
+> Checks the dependencies and fails if the groupId:artifactId combination exists in the list of direct or transitive dependencies.
+
+### Ban duplicate classes ###
+
+> Checks the dependencies and fails if any class is present in more than one dependency.
+
+You should not blindly ignore duplicate classes. You should try to
+
+* exclude classes by excluding dependencies
+* update a library (if possible)
+* look for alternative splitted dependencies
+
+If you add something make sure the ignored classes are binary identical!
+
+### Enforce bytecode version ###
+
+> Checks the dependencies transitively and fails if any class of any dependency is having its bytecode version higher than the one specified.
+
+## Example ##
+
+Here's a draft for your `pom.xml`. You might want to add this to a dedicated build profile so it will not slow down your regular build.
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+   <groupId>org.apache.maven.plugins</groupId>
+   <artifactId>maven-enforcer-plugin</artifactId>
+   <configuration>
+      <rules>
+         <!--
+            Requires that dependency version numbers converge.
+            If a project has two dependencies, A and B, both depending on the same artifact, C,
+            this rule will fail the build if A depends on a different version of C then the
+            version of C depended on by B.
+        -->
+         <dependencyConvergence>
+            <uniqueVersions>false</uniqueVersions>
+         </dependencyConvergence>
+      </rules>
+   </configuration>
+   <executions>
+      <execution>
+         <id>enforce</id>
+         <goals>
+            <goal>enforce</goal>
+         </goals>
+         <phase>validate</phase>
+      </execution>
+      <!--
+        Checks the dependencies and fails if the groupId:artifactId combination exists in the
+        list of direct or transitive dependencies.
+    -->
+      <execution>
+         <id>enforce-ban-circular-dependencies</id>
+         <goals>
+            <goal>enforce</goal>
+         </goals>
+         <configuration>
+            <rules>
+               <banCircularDependencies />
+            </rules>
+            <fail>true</fail>
+         </configuration>
+      </execution>
+      <!--
+        Checks the dependencies and fails if any class is present in more than one
+        dependency.
+    -->
+      <execution>
+         <id>enforce-ban-duplicate-classes</id>
+         <goals>
+            <goal>enforce</goal>
+         </goals>
+         <configuration>
+            <rules>
+               <banDuplicateClasses>
+                  <ignoreClasses>
+                     <!--
+                            Don't just add classes here! add them as a last resort.
+                            Before doing so try to:
+                                * exclude classes by excluding dependencies
+                                * update a library (if possible)
+                                * look for alternative splitted dependencies
+                            If you add something make sure the ignored classes are binary
+                            identical!
+                         -->
+                     <ignoreClass>org.apache.juli.*</ignoreClass>
+                     <ignoreClass>org.apache.commons.*</ignoreClass>
+                     <ignoreClass>org.aspectj.*</ignoreClass>
+                  </ignoreClasses>
+                  <findAllDuplicates>true</findAllDuplicates>
+               </banDuplicateClasses>
+            </rules>
+            <fail>true</fail>
+         </configuration>
+      </execution>
+      <!--
+        checks the dependencies transitively and fails if any class of any dependency is having
+        its bytecode version higher than the one specified.
+    -->
+      <execution>
+         <id>enforce-bytecode-version</id>
+         <goals>
+            <goal>enforce</goal>
+         </goals>
+         <configuration>
+            <rules>
+               <enforceBytecodeVersion>
+                  <ignoredScopes>
+                     <scope>test</scope>
+                  </ignoredScopes>
+                  <maxJdkVersion>${java.version}</maxJdkVersion>
+               </enforceBytecodeVersion>
+            </rules>
+            <fail>true</fail>
+         </configuration>
+      </execution>
+   </executions>
+   <dependencies>
+      <dependency>
+         <groupId>org.codehaus.mojo</groupId>
+         <artifactId>extra-enforcer-rules</artifactId>
+         <version>1.0-beta-3</version>
+      </dependency>
+   </dependencies>
+</plugin>
+```
