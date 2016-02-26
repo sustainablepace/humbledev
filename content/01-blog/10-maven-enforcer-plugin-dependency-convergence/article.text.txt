@@ -24,23 +24,27 @@ maven,enforcer,dependency convergence
 
 Text:
 
-Another great plugin for security and application stability is the Maven enforcer plugin.
+Another great plugin for security and application stability is the Maven Enforcer plugin. You don't want to end up in (link:https://dzone.com/articles/what-is-jar-hell text:JAR hell) :)
+
+You can use the Enforcer plugin for the following tasks.
 
 ### Dependency convergence ###
 
 > Requires that dependency version numbers converge. If a project has two dependencies, A and B, both depending on the same artifact, C, this rule will fail the build if A depends on a different version of C then the version of C depended on by B.
 
-Read more about dependency convergence in (link:http://timsteffens.blogspot.de/2014/05/solving-conflicts-with-transitive-maven.html text:Tim Steffen's blog post).
+Read more about dependency convergence in (link:http://timsteffens.blogspot.de/2014/05/solving-conflicts-with-transitive-maven.html text:Tim Steffen's blog post). For me, adding specific versions to the `pom.xml`s `dependencyManagement` section works best, I favor active management over exclusion.
 
 ### Ban circular dependencies ###
 
 > Checks the dependencies and fails if the groupId:artifactId combination exists in the list of direct or transitive dependencies.
 
+I haven't really come across any occurence of this, however it is nice to have.
+
 ### Ban duplicate classes ###
 
 > Checks the dependencies and fails if any class is present in more than one dependency.
 
-You should not blindly ignore duplicate classes. You should try to
+For example two classes could be identical after the package of one class has been renamed. You should not blindly ignore duplicate classes. You should try to
 
 * exclude classes by excluding dependencies
 * update a library (if possible)
