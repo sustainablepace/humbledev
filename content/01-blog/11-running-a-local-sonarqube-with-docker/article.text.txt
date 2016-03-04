@@ -24,11 +24,11 @@ maven,sonar,docker
 
 Text:
 
-In order to get the Maven configuration right, I wanted to have a local (link:http://www.sonarqube.org/ text:Sonarqube) to test. With (link:https://www.docker.com/ text:Docker), this is totally trivial.
+In order to get the Maven configuration of Sonar right, I wanted to have a local (link:http://www.sonarqube.org/ text:Sonarqube) to test with. Using (link:https://www.docker.com/ text:Docker), this is totally trivial.
 
 ## Run the Docker container ##
 
-You should already have Docker running on your local machine. Download the Sonarqube container from Docker Hub like this
+You should already have Docker running on your local machine. Download the Sonarqube container from (link:https://hub.docker.com/_/sonarqube/ text:Docker Hub) like this
 
 ```
 docker pull sonarqube
@@ -48,7 +48,7 @@ http://localhost:9000
 
 ## Run Maven goal ##
 
-Simply run the goal with the local installation
+I assume that your project is already configured with the (link:http://www.mojohaus.org/sonar-maven-plugin/plugin-info.html text:Maven Sonar plugin). Now simply run the goal with the local Sonarqube installation
 
 ```
 mvn sonar:sonar -Dsonar.host.url=http://localhost:9000
@@ -60,4 +60,4 @@ You should see the generated metrics at
 http://localhost:9000
 ```
 
-P.S. Read more about the Sonarqube container at (link:https://hub.docker.com/_/sonarqube/ text:Docker Hub).
+
