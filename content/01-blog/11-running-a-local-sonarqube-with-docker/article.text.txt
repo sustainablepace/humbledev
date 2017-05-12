@@ -37,7 +37,7 @@ docker pull sonarqube
 After downloading, start the container via
 
 ```
-docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:5.1
+docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube:latest
 ```
 
 You should see a Sonarqube installation at
