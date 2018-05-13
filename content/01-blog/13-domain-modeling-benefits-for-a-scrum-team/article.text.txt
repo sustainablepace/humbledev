@@ -1,0 +1,39 @@
+Title:
+
+Domain Modeling - Benefits for a Scrum Team
+
+----
+
+Description:
+
+Domain Modeling - Benefits for a Scrum Team
+
+----
+
+Date:
+
+05/13/2018
+
+----
+
+Tags:
+
+ddd, scrum
+
+----
+
+Text:
+
+_I want to stir more interest in DDD and modeling at REWE Digital, not only from developers. In preparation for an Open Space I'm writing a short memo about what Domain Modeling is and what people can get out of it. This is what I came up with...comments are welcome!_
+
+In a nutshell, Domain Modeling is about finding a __common language__ and __contextual abstraction__ for a given __business problem__, before writing any code.
+
+I'm interested if/how other teams are employing Domain Modeling, and share my experiences. I believe it is a discipline that can help form a stronger tie between domain experts and a Scrum team. It can also help identify __bounded contexts__ and enhance collaboration with __architects__.
+
+What are the benefits for a Scrum team doing Domain Modeling? By creating a domain model,
+
+ * __Domain experts__ and __Product Owners__ make sure that their intention is captured and understood (and even improved) by developers.
+ * __Scrum Masters__ can help Domain Experts and developers to truly collaborate (and not just do meetings), using a set of agile methods like __Event Storming__ or __Domain Storytelling__.
+ * __Developers__ can create microservices that align with bounded contexts, and write code that seperates core domain logic from infrastructural code, and make sure that the deployed code actually uses the common language and reflects the intention of the Domain experts.
+
+I can also give a short overview about popular Domain Modeling techniques. If there is enough interest in the topic, a __Community of Practice__ could be started where we could collaboratively learn and explore Domain Modeling techniques.
