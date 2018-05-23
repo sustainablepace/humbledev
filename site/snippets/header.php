@@ -19,7 +19,6 @@
   <link rel="apple-touch-icon" href="<?php echo url('assets/img/apple-touch-icon.png') ?>" />
   <meta name="apple-mobile-web-app-title" content="<?php echo html($site->title()) ?>">
   <link rel="alternate" type="application/rss+xml" href="<?php echo url('feed') ?>" title="Blog Feed" />
-  <?php include_once("cookie_consent.php"); ?>
 </head>
 <body>
 
