@@ -26,7 +26,7 @@ Text:
 
 I'm starting an experiment. Currently I'm taking part in a (link:https://workingoutloud.com/ text:Working Out Loud) circle at REWE digital. My objective is to better understand Domain Driven Design's tactical design by implementing its ideas in the real world.
 
-I've decided to share my learning goal and my progress here - I would love to find other developers who are interested in learning more about this, hopefully learning together as we go along, and sharing the results in this blog.
+I've decided to share my learning goal and my (link:humble text:humble) progress here - I would love to find other developers who are interested in learning more about this, hopefully learning together as we go along, and sharing the results in this blog.
 
 This experiment will go on for 3 months, as long as the Working Out Loud circle. So hopefully I will have learned enough to write twelve blog posts by autumn.
 
