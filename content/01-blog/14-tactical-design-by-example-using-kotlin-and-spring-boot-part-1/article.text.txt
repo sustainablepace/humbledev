@@ -36,7 +36,7 @@ In this first post, I want to describe my goal as precisely as possible, and fin
 >
 > Based on Event Storming and Hexagon Architecture I want to create a set of building blocks, using Kotlin and Spring Boot. These building blocks can be used to assemble µServices that solve real world problems.
 
-In March I talked about some of these things at the DDD Cologne Meetup. Here are my (link:https://baudson.de/slides/2020.03.02.DDD.Cologne.Hexagon.Architecture.in.the.real.world.pdf text:slides).
+In March I talked about some of these things at the DDD Cologne Meetup. Here are my (link:https://baudson.de/slides/2020.03.02.DDD.Cologne.Hexagon.Architecture.in.the.real.world.pdf text:slides). I have also started a (link:https://pinboard.in/u:sustainablepace/t:ddd text:list of interesting articles).
 
 Please don't hesitate to (link:contact text:contact) me, or (link:https://twitter.com/sustainablepace/status/1276101828241952768 text:leave a like or a comment). Even if this only sounds remotely interesting to you, and you have no idea what Event Storming or Hexagon Architecture is.
 
