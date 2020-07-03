@@ -1,0 +1,31 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 2)
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 2)
+
+----
+
+Date:
+
+07/03/2020
+
+----
+
+Tags:
+
+ddd, hexagon architecture, event storming, kotlin, spring boot, refactoring toward deeper insight
+
+----
+
+Text:
+
+In the past week I did a pattern refactoring in one of my team's microservices. Although it was planned as a technical refactoring, some interesting options popped up to re-align the code with our domain model. I summed up my experiences in a (german language) (link:https://www.youtube.com/watch?v=OQDDiSYXt-g text:talk), and here are the (link:https://baudson.de/slides/2020.07.02.DDD.Cologne.Meetup.Refactoring.Toward.Deeper.Insight.pdf text:slides).
+
+If you have any feedback, (link: text:please let me know) :)
+
+For the next week, I will revisit (link:https://twitter.com/tomhombergs text:Tom Hombergs)' fantastic book (link:https://reflectoring.io/book/ text:Get Your Hands Dirty on Clean Architecture) once again and take some notes of things that I want to try in the future.
