@@ -36,7 +36,7 @@ I want to clarify what I mean by building blocks. First of all, Eric Evans talks
 
 Some of these building blocks are first-class citizens in the Spring eco-system, which is a good foundation. However, these building blocks are also quite fine-grained , which only become visible if you model on a very low level. So while we do use them in day-to-day programming, we need something more abstract when exploring a story during a refinement, together with a product owner and potential stakeholders.
 
-A problem I encountered in the past was a gap between high-level, domain-oriented modeling, and a low-level, software-oriented modeling. At Team Turtlez, we were frequently surprised by insights which only revealed themselves on a closer look, things that were invisible from a higher, abstract level. That often made our estimations unusable, which is always an unnecessary burden on the trust levels within the team.
+A problem I encountered in the past was a gap between high-level, domain-oriented modeling, and a low-level, software-oriented modeling. At our team at REWE Digital, we were frequently surprised by insights which only revealed themselves on a closer look, things that were invisible from a higher, abstract level. That often made our estimations unusable, which is always an unnecessary burden on the trust levels within the team.
 
 ## A new approach to refinements
 
@@ -60,7 +60,7 @@ Now that refinements are a little more low-level, they take up more time, and ar
 
 OK, I'm now coming back to the idea of building blocks. The blocks identified by Eric Evans are totally usable, but I need to add more abstract building blocks. Event Storming can help here. In an ideal world, the idea would be to map each post-it to a single task, and map each task to a class that has to be implemented. This would be a perfect bridge between the domain, the domain model, and the code.
 
-In the source code of Turtlez µServices you will already find events and commands, and also aggregates. But what about other blocks, like business rules or policies? We still don't have a proper representation for these. Business rules are sometimes just functions in a service, or methods on an aggregate. What about validation? Will this be done before it enters the application service layer, or even within the domain? These are questions that I want to address as we move forward with this approach. So what are your questions?
+In the source code of our µServices you will already find events and commands, and also aggregates. But what about other blocks, like business rules or policies? We still don't have a proper representation for these. Business rules are sometimes just functions in a service, or methods on an aggregate. What about validation? Will this be done before it enters the application service layer, or even within the domain? These are questions that I want to address as we move forward with this approach. So what are your questions?
 
 If you want to be included in the dialogue, feel free to let me know.
 
