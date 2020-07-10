@@ -26,9 +26,7 @@ Text:
 
 Let's take a look back at my goal
 
-> Based on Event Storming and Hexagon Architecture I want to create a set of building blocks,
-> using Kotlin and Spring Boot. These building blocks can be used to assemble µServices
-> that solve real world problems.
+> Based on Event Storming and Hexagon Architecture I want to create a set of building blocks, using Kotlin and Spring Boot. These building blocks can be used to assemble µServices that solve real world problems.
 
 I want to clarify what I mean by building blocks. First of all, Eric Evans talks about building blocks in his Domain-Driven Design book. Here's an overview of the building blocks he is referring to (image from (link: http://static.olivergierke.de/lectures/ddd-and-spring/ text:Domain-Driven Design and Spring))
 
