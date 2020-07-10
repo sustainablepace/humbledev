@@ -32,7 +32,7 @@ Let's take a look back at my goal
 
 I want to clarify what I mean by building blocks. First of all, Eric Evans talks about building blocks in his Domain-Driven Design book. Here's an overview of the building blocks he is referring to (image from (link: http://static.olivergierke.de/lectures/ddd-and-spring/ text:Domain-Driven Design and Spring))
 
-(image:01.jpg)
+(image:01.png)
 
 Some of these building blocks are first-class citizens in the Spring eco-system, which is a good foundation. However, these building blocks are also quite fine-grained , which only become visible if you model on a very low level. So while we do use them in day-to-day programming, we need something more abstract when exploring a story during a refinement, together with a product owner and potential stakeholders.
 
@@ -48,7 +48,7 @@ We are now trying a collaborative modeling approach to refinements, with several
 
 For now, we do refinements remotely, using a (link:https://jamboard.google.com/ text:Jamboard). Here is an example from a recent refinement (unfortunately not ready for disclosure)
 
-(image:02.jpg)
+(image:02.png)
 
 While a Jamboard is more limited than, for example, (link:https://miro.com/ text:Miro), its constraints are quite charming. It is a much simpler tool, with a small modeling space, where you don't get lost. We found it's a good tool for a software-level model. The post-it colors are almost a perfect match for Event Storming.
 
