@@ -1,0 +1,116 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 5)
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 5)
+
+----
+
+Date:
+
+07/24/2020
+
+----
+
+Tags:
+
+ddd, hexagon architecture, event storming, kotlin, spring boot, refactoring toward deeper insight
+
+----
+
+Text:
+
+Today will be about the power of inline classes in Kotlin!
+
+## The domain
+
+Here's an example from REWE digital, the company I work for. They are offering online grocery shopping and deliveries.
+
+So when an order is delivered to a customer, the articles are packed in load units. These can be things like boxes or bags. The driver who delivers the order to the customer uses an app, in which he loads the orders to be delivered. Of course the drivers need to know which orders are in which load units.
+
+But in addition to the actual, physical load units, the app also needs to know about the stuff that is unavailable and will not be included in the delivery, in order to inform the customer properly. As the contract between the app and the backend service is based on the assumption that all articles are contained in load units, we have the concept of virtual load units, that hold the unavailable articles.
+
+This concept has always been neglected a little. Last week my team did a refactoring of the following code.
+
+```kotlin
+fun collectLoadUnitsForDelivery(delivery: Delivery): List<LoadUnit> {
+        val loadUnitMap = LoadUnitMap.create(delivery)
+
+        val physicalLoadUnits = delivery.getLoadUnitsContainingArticles()
+                .map {
+                    FFC20LoadUnitHierarchy.create(loadUnitMap, it)
+                }.map {
+                    LoadUnit.createForFFC20(delivery, it)
+                }
+                .mergeLinkedArticlesForSameLoadUnit()
+
+        val virtualLoadUnit = LoadUnit.createVirtualBoxForFFC20(delivery)
+
+        return physicalLoadUnits + listOfNotNull(virtualLoadUnit)
+    }
+```
+
+We didn't like that we treated both physical and virtual load units alike. Both were modeled as a list of type LoadUnit, we wanted more type safety. You can also see that the creation of the physical load units is a bit cumbersome and logic leaks into this method.
+
+## Inline classes
+
+In Kotlin you can wrap a single type in a class, in order to create a new type, without any computational overhead. In the JVM, the wrapped type is still used. This makes it in obvious choice for introducing domain terminology into the code. There are several good articles on Inline Classes, like this article by Anvith Bhat.
+
+We used inline classes to model both physical and virtual load units. Here is the gist of the physical load units
+
+```kotlin
+inline class PhysicalLoadUnits(val loadUnits: List<LoadUnit>) {
+
+    operator fun plus(virtualLoadUnit: VirtualLoadUnit?) = loadUnits + listOfNotNull(virtualLoadUnit?.loadUnit)
+
+    companion object {
+        fun create(delivery: Delivery) =
+                PhysicalLoadUnits(
+                        delivery.getLoadUnitsContainingArticles()
+                                .map {
+                                    LoadUnit.createForFFC20(delivery, it)
+                                }
+                ).mergeLinkedArticlesForSameLoadUnit()
+    }
+
+}
+```
+
+The complexity of constructing the physical load units is now concealed in a factory method. Previously it was more exposed and easy to get wrong.
+
+The virtual load unit is now also an inline class
+
+```kotlin
+inline class VirtualLoadUnit(val loadUnit: LoadUnit) {
+    companion object {
+        fun create(delivery: Delivery) =
+                createVirtualBoxForFFC20(delivery)?.let(::VirtualLoadUnit)
+
+        private fun createVirtualBoxForFFC20(delivery: Delivery): LoadUnit? {
+            // omitted
+        }
+
+        fun OrderCode.toVirtualBoxCode() = "V-$this"
+    }
+
+}
+```
+
+We observed that introducing these classes had a magnetic effect on a lot of code bits, and the remaining code was much easier to read. Even little things like the conversion of an order code to a virtual box code now have a decent home.
+
+## The result
+
+So now the algorithm is really simple. The list of all load units is the sum of physical and the virtual load unit
+
+```kotlin
+fun collectLoadUnitsForDelivery(delivery: Delivery): List<LoadUnit> {
+        return PhysicalLoadUnits.create(delivery) + VirtualLoadUnit.create(delivery)
+    }
+```
+
+Inline classes are still experimental, but we think they are ready to test them in production. What do you think about inline classes? Do you use them? What are your experiences?
+

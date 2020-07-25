@@ -39,9 +39,7 @@ As I'm wondering how to model policies and commands properly, the first two step
 
 Tom has a pragmatic way of distinguishing the two
 
-> „Validating a business rule requires access to the current state of the domain model,
-> while validating input does not. Input validation can be implemented declaratively,
-> while a business rule needs more context.“
+> „Validating a business rule requires access to the current state of the domain model, while validating input does not. Input validation can be implemented declaratively, while a business rule needs more context.“
 
 This led me to questioning the way I implement commands.
 
