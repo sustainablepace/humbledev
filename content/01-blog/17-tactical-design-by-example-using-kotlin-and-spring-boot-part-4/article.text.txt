@@ -1,0 +1,116 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 4)
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 4)
+
+----
+
+Date:
+
+07/17/2020
+
+----
+
+Tags:
+
+ddd, hexagon architecture, event storming, kotlin, spring boot, refactoring toward deeper insight
+
+----
+
+Text:
+
+I'm currently re-reading Tom Hombergs brilliant book (link:https://leanpub.com/get-your-hands-dirty-on-clean-architecture text:Get Your Hands Dirty on Clean Architecture). In it, he explains an opinionated way to implement Hexagon Architecture with Java and Spring.
+
+Early on he describes how to model a use case in four steps
+
+1. Take input
+2. Validate business rules
+3. Manipulate model state
+4. Return output
+
+As I'm wondering how to model policies and commands properly, the first two steps here are quite interesting.
+
+## Validating input versus validating business rules
+
+Tom has a pragmatic way of distinguishing the two
+
+> „Validating a business rule requires access to the current state of the domain model,
+> while validating input does not. Input validation can be implemented declaratively,
+> while a business rule needs more context.“
+
+This led me to questioning the way I implement commands.
+
+## Validating input using commands
+
+So far, whenever a service of ours acts on input, for example, an incoming Kafka message, a POJO of that input is simply wrapped in a command envelope. In this example, we receive an update on prices, and want to update the refund prices of deposit articles.
+
+```kotlin
+data class UpdateDepositPrices(val priceUpdated: PriceUpdated) : Command()
+```
+
+This means that the only validation that is happening here is, that the incoming data in deserializable into the PriceUpdated class. But that class contains a lot of nullable values! So we possibly contaminate the application with tainted data.
+
+Following Tom's definition I tried to do validation earlier on, before the data enters the application. So I went ahead and wrapped the validation in a command.
+
+```kotlin
+data class UpdateDepositPrice(
+    val articleId: String,
+    val refundPrice: Int,
+    val currency: Currency,
+    val currencyUnit: CurrencyUnit
+) : Command() {
+    companion object {
+        fun create(priceUpdated: PriceUpdated): List<UpdateDepositPrice> {
+            val articleId = priceUpdated.getArticleId()
+
+            requireNotNull(articleId) { "No article id found in listing!" }
+
+            return priceUpdated.prices.map { price ->
+                UpdateDepositPrice(
+                    articleId,
+                    price.customAttributes.refund,
+                    Currency.valueOf(price.currency),
+                    CurrencyUnit.valueOf(price.unit)
+                )
+            }
+        }
+    }
+}
+```
+
+First, checking for invalid input prevents faulty data from reaching the application. I quite like that. Second, the mapping from the event payload also happens here. So the application is now also unaware of the outside world. This is also an improvement.
+
+From reading the code you might have found this other interesting consequence: A single PriceUpdated event actually contains multiple price updates! So before, we had to handle this in the application. Now, we have an individual command for each price update, which is generated in the Kafka consumer. I think this also leads to more clarity in the application, and eliminates side effects like exceptions in the application and domain.
+
+```kotlin
+override fun processValidMessagePayload(topic: String?, messageType: String?, messageKey: String?, priceUpdated: PriceUpdated): String {
+    try {
+        UpdateDepositPrice.create(priceUpdated).forEach {
+            workflow.process(it)
+        }
+    } catch (e: IllegalArgumentException) {
+        log.warn(e.message)
+    }
+    return priceUpdated.id
+}
+```
+
+## Policies
+
+In Event Storming, a policy is a business rule on a process level. When you hear people say "whenever this happens, we do this", it is a policy. In our case, whenever a price is updated, we check if it is a refund price for a deposit article, and store it in a deposit map.
+
+I think the create method in the second snippet might be contender for such a policy. It takes an event as an input, and returns a command. Ideally, it would publish the command immediately on an internal command bus, and by this truly decoupling the consumer from the application.
+
+Maybe this is a next step I'm investigating.
+
+## What do you think?
+
+What do you think of this approach? How do you handle validation? I'm interested to learn about alternatives. Just contact me on Twitter.
+
+
+
