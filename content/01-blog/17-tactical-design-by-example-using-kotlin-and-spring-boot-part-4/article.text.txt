@@ -18,7 +18,7 @@ Date:
 
 Tags:
 
-ddd, hexagon architecture, event storming, kotlin, spring boot, refactoring toward deeper insight
+ddd, event storming, kotlin, validation, command, policy
 
 ----
 
