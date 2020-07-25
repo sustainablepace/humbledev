@@ -88,3 +88,7 @@ c::set('markdown.extra', true);
 
 /* Custom */
 c::set('address', 'http://humbledev.baudson.de/');
+
+
+c::set('plugin.kirby-highlight', true);
+c::set('plugin.kirby-highlight.languages', ['kotlin']);
