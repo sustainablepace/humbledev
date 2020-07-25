@@ -41,3 +41,5 @@ In March I talked about some of these things at the DDD Cologne Meetup. Here are
 Please don't hesitate to (link:contact text:contact) me, or (link:https://twitter.com/sustainablepace/status/1276101828241952768 text:leave a like or a comment). Even if this only sounds remotely interesting to you, and you have no idea what Event Storming or Hexagon Architecture is.
 
 I already have an idea for part two: it will be about Refactoring Toward Deeper Insight. I have found an interesting example in my team's code base that is a good example for this.
+
+Move on to (link:tactical-design-by-example-using-kotlin-and-spring-boot-part-2 text:part two).
