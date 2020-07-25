@@ -26,7 +26,7 @@ Text:
 
 In the past week I did a pattern refactoring in one of my team's microservices. Although it was planned as a technical refactoring, some interesting options popped up to re-align the code with our domain model. I summed up my experiences in a (german language) (link:https://www.youtube.com/watch?v=OQDDiSYXt-g text:talk), and here are the (link:https://baudson.de/slides/2020.07.02.DDD.Cologne.Meetup.Refactoring.Toward.Deeper.Insight.pdf text:slides).
 
-(video:https://www.youtube.com/watch?v=OQDDiSYXt-g)
+(video: https://www.youtube.com/watch?v=OQDDiSYXt-g)
 
 If you have any feedback, (link:https://twitter.com/sustainablepace/status/1278959393812381697 text:please let me know) :)
 
