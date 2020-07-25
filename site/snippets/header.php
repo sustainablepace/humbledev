@@ -8,7 +8,7 @@
 
   <?php echo css('http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700') ?>
   <?php echo css('assets/css/site.css') ?>
-  <?php echo css('assets/plugins/kirby-highlight/css/zenburn.css') ?>
+  <?php echo css('assets/css/zenburn.css') ?>
 
   <?php if($page->description() != ''): ?>
   <meta name="description" content="<?php echo html($page->description()) ?>" />
