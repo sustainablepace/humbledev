@@ -28,7 +28,7 @@ Today will be about the power of inline classes in Kotlin!
 
 ## The domain
 
-Here's an example from REWE digital, the company I work for. They are offering online grocery shopping and deliveries.
+Here's an example from *REWE digital*, the company I work for. They are offering *online grocery shopping and deliveries*.
 
 So when an order is delivered to a customer, the articles are packed in load units. These can be things like boxes or bags. The driver who delivers the order to the customer uses an app, in which he loads the orders to be delivered. Of course the drivers need to know which orders are in which load units.
 
@@ -91,7 +91,7 @@ inline class VirtualLoadUnit(val loadUnit: LoadUnit) {
                 createVirtualBoxForFFC20(delivery)?.let(::VirtualLoadUnit)
 
         private fun createVirtualBoxForFFC20(delivery: Delivery): LoadUnit? {
-            // omitted
+            // omitted for readability
         }
 
         fun OrderCode.toVirtualBoxCode() = "V-$this"
@@ -108,7 +108,8 @@ So now the algorithm is really simple. The list of all load units is the sum of 
 
 ```kotlin
 fun collectLoadUnitsForDelivery(delivery: Delivery): List<LoadUnit> {
-        return PhysicalLoadUnits.create(delivery) + VirtualLoadUnit.create(delivery)
+        return PhysicalLoadUnits.create(delivery)
+               + VirtualLoadUnit.create(delivery)
     }
 ```
 
