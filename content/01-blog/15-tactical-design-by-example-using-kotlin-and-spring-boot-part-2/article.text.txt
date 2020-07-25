@@ -29,3 +29,5 @@ In the past week I did a pattern refactoring in one of my team's microservices. 
 If you have any feedback, (link:https://twitter.com/sustainablepace/status/1278959393812381697 text:please let me know) :)
 
 For the next week, I will revisit (link:https://twitter.com/tomhombergs text:Tom Hombergs)' fantastic book (link:https://reflectoring.io/book/ text:Get Your Hands Dirty on Clean Architecture) once again and take some notes of things that I want to try in the future.
+
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-3 text:part three) or go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-1 text:part one).

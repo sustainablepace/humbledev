@@ -42,4 +42,4 @@ Please don't hesitate to (link:contact text:contact) me, or (link:https://twitte
 
 I already have an idea for part two: it will be about Refactoring Toward Deeper Insight. I have found an interesting example in my team's code base that is a good example for this.
 
-Move on to (link:tactical-design-by-example-using-kotlin-and-spring-boot-part-2 text:part two).
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-2 text:part two).
