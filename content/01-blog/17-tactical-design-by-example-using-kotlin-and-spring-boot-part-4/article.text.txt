@@ -108,7 +108,7 @@ Maybe this is a next step I'm investigating.
 
 ## What do you think?
 
-What do you think of this approach? How do you handle validation? I'm interested to learn about alternatives. Just contact me on Twitter.
+What do you think of this approach? How do you handle validation? I'm interested to learn about alternatives. Just (link:https://twitter.com/sustainablepace text:contact me on Twitter).
 
 
 

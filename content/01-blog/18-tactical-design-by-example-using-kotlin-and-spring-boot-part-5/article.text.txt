@@ -114,5 +114,5 @@ fun collectLoadUnitsForDelivery(delivery: Delivery): List<LoadUnit> {
     }
 ```
 
-Inline classes are still experimental, but we think they are ready to test them in production. What do you think about inline classes? Do you use them? What are your experiences?
+Inline classes are still experimental, but we think they are ready to test them in production. What do you think about inline classes? Do you use them? What are your experiences? Just (link:https://twitter.com/sustainablepace text:contact me on Twitter).
 
