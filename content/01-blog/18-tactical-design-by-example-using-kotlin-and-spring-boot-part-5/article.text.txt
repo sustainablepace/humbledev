@@ -28,13 +28,13 @@ Today will be about the power of inline classes in Kotlin!
 
 ## The domain
 
-Here's an example from _REWE digital_, the company I work for. They are offering _online grocery shopping and deliveries_.
+Here's an example from __REWE digital__, the company I work for. They are offering __online grocery shopping and deliveries__.
 
-So when an order is delivered to a customer, the articles are packed in _load units_. These can be things like _boxes or bags_. The driver who delivers the order to the customer uses an app, in which he loads the orders to be delivered. Of course the drivers need to know which orders are in which load units.
+So when an order is delivered to a customer, the articles are packed in __load units__. These can be things like __boxes or bags__. The driver who delivers the order to the customer uses an app, in which he loads the orders to be delivered. Of course the drivers need to know which orders are in which load units.
 
-But in addition to the actual, _physical load units_, the app also needs to know about the stuff that is unavailable and will not be included in the delivery, in order to inform the customer properly. As the contract between the app and the backend service is based on the assumption that all articles are contained in load units, we have the concept of _virtual load units_, that hold the unavailable articles.
+But in addition to the actual, __physical load units__, the app also needs to know about the stuff that is unavailable and will not be included in the delivery, in order to inform the customer properly. As the contract between the app and the backend service is based on the assumption that all articles are contained in load units, we have the concept of __virtual load units__, that hold the unavailable articles.
 
-This concept has always been neglected a little. Last week my team did a _refactoring_ of the following code.
+This concept has always been neglected a little. Last week my team did a __refactoring__ of the following code.
 
 ```kotlin
 fun collectLoadUnitsForDelivery(delivery: Delivery): List<LoadUnit> {
@@ -54,11 +54,11 @@ fun collectLoadUnitsForDelivery(delivery: Delivery): List<LoadUnit> {
     }
 ```
 
-We didn't like that we treated both physical and virtual load units alike. Both were modeled as a list of type LoadUnit, we wanted _more type safety_. You can also see that the creation of the physical load units is a bit cumbersome and _logic leaks_ into this method.
+We didn't like that we treated both physical and virtual load units alike. Both were modeled as a list of type LoadUnit, we wanted __more type safety__. You can also see that the creation of the physical load units is a bit cumbersome and __logic leaks__ into this method.
 
 ## Inline classes
 
-In Kotlin you can _wrap a single type in a class_, in order to create a new type, _without any computational overhead_. In the JVM, the wrapped type is still used. This makes it in obvious choice for _introducing domain terminology into the code_. There are several good articles on Inline Classes, like this (link:https://medium.com/@anvith/working-with-kotlin-inline-class-daac9822596f text:article by Anvith Bhat).
+In Kotlin you can __wrap a single type in a class__, in order to create a new type, __without any computational overhead__. In the JVM, the wrapped type is still used. This makes it in obvious choice for __introducing domain terminology into the code__. There are several good articles on Inline Classes, like this (link:https://medium.com/@anvith/working-with-kotlin-inline-class-daac9822596f text:article by Anvith Bhat).
 
 We used inline classes to model both physical and virtual load units. Here is the gist of the physical load units
 
@@ -81,7 +81,7 @@ inline class PhysicalLoadUnits(val loadUnits: List<LoadUnit>) {
 }
 ```
 
-The complexity of constructing the physical load units is now _concealed in a factory method_. Previously it was more exposed and easy to get wrong.
+The complexity of constructing the physical load units is now __concealed in a factory method__. Previously it was more exposed and easy to get wrong.
 
 The virtual load unit is now also an inline class
 
@@ -101,7 +101,7 @@ inline class VirtualLoadUnit(val loadUnit: LoadUnit) {
 }
 ```
 
-We observed that introducing these classes had a _magnetic effect_ on a lot of code bits, and the remaining code was much easier to read. Even little things like the conversion of an order code to a virtual box code now have a decent home.
+We observed that introducing these classes had a __magnetic effect__ on a lot of code bits, and the remaining code was much easier to read. Even little things like the conversion of an order code to a virtual box code now have a decent home.
 
 ## The result
 
