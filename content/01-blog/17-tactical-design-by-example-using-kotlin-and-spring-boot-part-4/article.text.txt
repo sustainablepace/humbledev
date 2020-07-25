@@ -110,5 +110,5 @@ Maybe this is a next step I'm investigating.
 
 What do you think of this approach? How do you handle validation? I'm interested to learn about alternatives. Just (link:https://twitter.com/sustainablepace text:contact me on Twitter).
 
-
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-5 text:part five) or go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-3 text:part three).
 

@@ -60,7 +60,6 @@ OK, I'm now coming back to the idea of building blocks. The blocks identified by
 
 In the source code of our µServices you will already find events and commands, and also aggregates. But what about other blocks, like business rules or policies? We still don't have a proper representation for these. Business rules are sometimes just functions in a service, or methods on an aggregate. What about validation? Will this be done before it enters the application service layer, or even within the domain? These are questions that I want to address as we move forward with this approach. So what are your questions?
 
-If you want to be included in the dialogue, feel free to let me know.
+If you want to be included in the dialogue, feel free to (link:https://twitter.com/sustainablepace text:contact me on Twitter).
 
-
-
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-4 text:part four) or go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-2 text:part two).
