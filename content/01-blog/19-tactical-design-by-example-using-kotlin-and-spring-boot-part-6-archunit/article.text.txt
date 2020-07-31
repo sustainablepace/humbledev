@@ -1,0 +1,149 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 6) - ArchUnit
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 6) - ArchUnit
+
+----
+
+Date:
+
+07/31/2020
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, testing, archunit
+
+----
+
+Text:
+
+Today I experimented a little with ArchUnit, in order to validate that an application follows our team's interpretation of Hexagon Architecture. I wanted to ensure that
+
+ - repositories, consumers and controllers are in the corresponding adapter package
+ - application services are in the application service package
+ - commands and queries are in the incoming port package
+ - the outgoing port package only contains interfaces
+ - the domain does not use any outer layers
+ - the application services do not use any adapters
+
+I started by watching a very nice introductory talk by Alexander Schwartz
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AOKqpnCDtWU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+He had a promising example for validating onion architectures (just another name for Hexagon Architectures), but more about that later. It is really simple to pull off.
+
+## Example
+
+### Test dependencies
+
+First of all, you need to add ArchUnit as test dependencies
+
+```kotlin
+testImplementation("com.tngtech.archunit:archunit-junit5-api:0.14.1")
+testImplementation("com.tngtech.archunit:archunit-junit5-engine:0.14.1")
+```
+
+### Test class
+
+ArchUnit tests are, unsurprisingly, unit tests.
+
+Here's a simple test class
+
+```kotlin
+@AnalyzeClasses(
+    packages = ["com.rewe.digital.fulfillment.delivery.depositservice"],
+    importOptions = [ImportOption.DoNotIncludeTests::class]
+)
+class ArchUnitTest {
+}
+```
+
+Here I make sure that only classes in specified packages are tested, excluding test classes.
+
+### Validating adapters
+
+I want to make sure that all components that are repositories, Kafka consumers or controllers are in the corresponding adapter package.
+
+```kotlin
+@ArchTest
+val `repositories are adapters` = ArchRuleDefinition.classes()
+    .that().areAnnotatedWith(Repository::class.java)
+    .should().resideInAPackage("..adapter.database..")
+
+@ArchTest
+val `controllers are adapters` = ArchRuleDefinition.classes()
+    .that().areAnnotatedWith(Controller::class.java)
+    .should().resideInAPackage("..adapter.http..")
+
+@ArchTest
+val `consumers are adapters` = ArchRuleDefinition.classes()
+    .that().areAssignableTo(AbstractKafkaConsumer::class.java)
+    .should().resideInAPackage("..adapter.kafka..")
+```
+
+The DSL makes it really easy to find the correct syntax. It's perfectly readable and offers a huge variety of options.
+
+### Validating the application layer
+
+We use a super class for commands, queries and application services.
+
+```kotlin
+@ArchTest
+val `commands are incoming ports` = ArchRuleDefinition.classes()
+    .that().areAssignableTo(Command::class.java)
+    .should().resideInAPackage("..application.port.in..")
+
+@ArchTest
+val `queries are incoming ports`: ClassesShouldConjunction = ArchRuleDefinition.classes()
+    .that().areAssignableTo(Query::class.java)
+    .should().resideInAPackage("..application.port.in..")
+
+@ArchTest
+val `outgoing ports are always interfaces` = ArchRuleDefinition.classes()
+    .that().resideInAPackage("..application.port.out..")
+    .should().beInterfaces()
+
+@ArchTest
+val `application services are workflows` = ArchRuleDefinition.classes()
+    .that().areAnnotatedWith(Service::class.java)
+    .should().resideInAPackage("..application.service..")
+    .andShould().beAssignableTo(Workflow::class.java)
+```
+
+### Validating the boundaries
+
+And now we want to make sure that the boundaries are tight.
+
+```kotlin
+@ArchTest
+val `hexagon architecture should be enforced` = Architectures.onionArchitecture()
+    .domainModels("..domain..")
+    .applicationServices("..application..")
+    .adapter("adapter", "..adapter..")
+    .withOptionalLayers(true)
+```
+
+I had to include _withOptionalLayers_ here because we don't use domain services in this example. Apparently ArchUnit expects every application to have Domain Services in a Hexagon Architecture.
+
+Another thing: In the talk I mentioned above, this kind of validation is done "by hand", but when you check the source code of ArchUnit, the _onionArchitecture()_ method is merely syntactic sugar for _layeredArchitecture()_.
+
+## Very good documentation, only one drawback
+
+The documentation is impressively extensive. There are also a lot of helpful examples on GitHub.
+
+A minor drawback is that IntelliJ IDEA is unable to execute a single ArchUnit test in a suite. You always have to execute all tests. Maybe upvote the issue and it will get fixed.
+
+I liked the point in Alexander Schwartz' talk about watching the watchers - making sure that the tests actually validate what they promise. I started with red tests and fixed them, but I could definitely improve there.
+
+In the end, I found ArchUnit really easy to use. It took me less than an hour to get it working, and I'm more of a clumsy guy.
+
+I would like to hear if any of you are using it, and what architecture rules you are enforcing. Let me know! Just (link:https://twitter.com/sustainablepace text:contact me on Twitter).
+
+Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-5 text:part five).
+
