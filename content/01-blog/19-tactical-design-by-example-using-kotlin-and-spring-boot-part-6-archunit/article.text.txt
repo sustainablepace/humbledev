@@ -33,10 +33,10 @@ Today I experimented a little with (link:https://www.archunit.org/ text:ArchUnit
  - the __domain__ does not use any outer layers
  - the __application services__ do not use any adapters
 
-I started by watching a very nice introductory talk by Alexander Schwartz
+I started by watching a very nice introductory talk by (link:https://twitter.com/ahus1de text:Alexander Schwartz)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AOKqpnCDtWU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-He had a promising example for validating onion architectures (just another name for Hexagon Architectures), but more about that later. It is really simple to pull off.
+He had a promising example for validating __onion architectures__ (just another name for Hexagon Architectures), but more about that later. It is really simple to pull off.
 
 ## Example
 
