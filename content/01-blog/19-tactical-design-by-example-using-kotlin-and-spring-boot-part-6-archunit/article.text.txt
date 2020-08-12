@@ -143,5 +143,5 @@ In the end, I found ArchUnit really easy to use. It took me less than an hour to
 
 I would like to hear if any of you are using it, and what architecture rules you are enforcing. __Let me know!__ Just (link:https://twitter.com/sustainablepace text:contact me on Twitter).
 
-Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-5 text:part five).
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-7-testing-101 text:part seven) or go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-5 text:part five).
 
