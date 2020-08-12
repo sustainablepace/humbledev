@@ -38,7 +38,7 @@ And of course, adapters make use of actual infrastructure components that are, w
 
 (image:wardley.png)
 
-You see that we should __focus on the quality of the items to the upper left__ more, because these are the items that make our application unique. The items on the lower right, although necessary, are mostly well-tested themselves, so we should be spending less time there when testing.
+You see that we should __focus on the quality of the items to the upper left__ more, because these are the items that make our application unique. The items on the lower right, although necessary, are mostly well-tested themselves, so we should be spending less time there.
 
 Of course there are applications which are themselves more generic - I'm talking about applications that belong into your __core domain__.
 
@@ -60,9 +60,9 @@ Of course this is just a rule of thumb, and there are always reasons for excepti
 
 ## Test scope
 
-Getting the scope right for each type of test is crucial if you don't want to get lost and miss test cases.
+Getting the scope right for each type of test is crucial if you don't want to suffer from __bad performance__, __missing test cases__ or have __duplicate test cases__ on different levels.
 
-Let's take a look at an adapter test. Its job is to take data from the outside world, interpret it, and pass a query or a command to the application layer. This is just what happens here, with a Kafka consumer consuming price data
+Let's take a look at an __adapter test__. Its job is to take data from the outside world, interpret it, and pass a query or a command to the application layer. This is just what happens here, with a __Kafka consumer__ consuming price data
 
 ```kotlin
     @MockkBean
