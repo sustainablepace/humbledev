@@ -1,0 +1,106 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 7) - Testing 101
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 7) - Testing 101
+
+----
+
+Date:
+
+08/13/2020
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, testing, test slices, spring, wardley maps
+
+----
+
+Text:
+
+After having fun with ArchUnit last week, I wanted to explore testing a little more. Let's revisit some basics this week. I will be focusing on integration testing in the next blog post, especially on (link:https://docs.spring.io/spring-boot/docs/2.3.2.RELEASE/reference/htmlsingle/#boot-features-testing-spring-boot-applications-testing-autoconfigured-tests text:Spring Boot test slices).
+
+## How Hexagon Architecture helps with testing
+
+The __Hexagon Architecture__ not only structures our application, but also helps us to __distinguish between more valuable and more generic parts__. Generally speaking,
+
+ - the __domain__ layer is most valuable, as it contains custom business logic, the whole reason for writing the software in the first place
+ - the __application service__ layer is not quite as valuable, they do describe actual business processes and workflows, but are usually more generic
+ - the __adapter__ layer is least valuable, they are mostly created with help from third-party libraries and should rarely be customized
+
+And of course, adapters make use of actual infrastructure components that are, with today's cloud infrastructure, a commodity. All this can be visualized quite nicely with a __Wardley Map__:
+
+(image:wardley.png)
+
+You see that we should __focus on the quality of the items to the left__ more, because these are the items that make our application unique. The items on the right, although necessary, are mostly well-tested themselves, so we should be spending less time there when testing.
+
+## The Test Pyramid
+
+Everyone knows the test pyramid. Here I want to show what layers are tested on which level.
+
+(image:test-pyramid.png)
+
+Because the __domain__ is most valuable, we should obsess about tests here. Bring in __Example Mapping__ to get every little edge case. This layer should be bulletproof! As the domain layer has no dependencies to the outside, we can use __unit tests__ here. They are __fast__, so having __many unit tests__ is not a problem.
+
+__Application services__ are less interesting, because they mostly contain just a few __business rules__ and a __process flow__. They contain dependencies to the outside world via __ports__, and they can easily be simulated with __mocks__. __Unit tests__ are still a good choice here, but __you won't need as many__.
+
+As __adapters__ make use of the infrastructure, we usually don't want to unit test them. In Spring Boot, we need an __application context__ with the infrastructure beans like __repositories__, __controllers__ or __consumers__. Nevertheless, we want to develop them via Test-Driven Development as well, so they should be __reasonably fast__. You will usually have only a __few tests__ per adapter.
+
+Testing the __whole application__ is expensive. We need the complete application context here. Usually, focusing on the __happy path__ of the __real-world use cases__ is sufficient here. So you will have __very few integration tests__ here.
+
+Of course this is just a rule of thumb, and there are always reasons for exceptions.
+
+## Test scope
+
+Getting the scope right for each type of test is crucial if you don't want to get lost and miss test cases.
+
+Let's take a look at an adapter test. Its job is to take data from the outside world, interpret it, and pass a query or a command to the application layer. This is just what happens here, with a Kafka consumer consuming price data
+
+```kotlin
+    @MockkBean
+    lateinit var applicationService: Workflow<UpdateDepositPrice>
+
+    @Test
+    fun `published prices will be processed`() {
+        // given:
+        val articleId = "articleId"
+        val currency = Currency.EUR
+        val refund = 15
+        val unit = CurrencyUnit.Cent
+
+        // when:
+        PriceUpdated(
+            id = UUID.randomUUID().toString(),
+            references = listOf(Reference("article", "id", articleId)),
+            prices = listOf(Price(unit.name, currency.name, CustomAttributes(refund)))
+        ).also {
+            aKafkaProducer<PriceUpdated>(topic).sendMessage(it.id, it, PRICE_CREATED)
+        }
+
+        // then:
+        val slot = slot<UpdateDepositPrice>()
+        verify(timeout = 5000) { applicationService.process(capture(slot)) }
+        slot.captured.let {
+            assertThat(it.articleId).isEqualTo(articleId)
+            assertThat(it.currency).isEqualTo(currency)
+            assertThat(it.refundPrice).isEqualTo(refund)
+            assertThat(it.currencyUnit).isEqualTo(unit)
+        }
+    }
+```
+
+We are using a __mock bean__ to validate if the consumer works. Do not test what happens within the application service! This should already be covered by unit tests of the service itself.
+
+I will continue next week with the performance aspect of adapter tests. We will discuss the pros and cons of reusing application contexts, and explore Spring Boot test slices.
+
+Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-5 text:part five).
+
+
+
+
