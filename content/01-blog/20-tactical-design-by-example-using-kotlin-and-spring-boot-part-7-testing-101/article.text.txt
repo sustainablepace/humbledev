@@ -48,7 +48,7 @@ Everyone knows the test pyramid. Here I want to show what layers are tested on w
 
 (image:test-pyramid.png)
 
-Because the __domain__ is most valuable, we should obsess about tests here. Bring in (link:example-mapping text:Example Mapping) to get every little edge case. This layer should be bulletproof! As the domain layer has no dependencies to the outside, we can use __unit tests__ here. They are __fast__, so having __many unit tests__ is not a problem.
+Because the __domain__ is most valuable, we should obsess about tests here. Bring in (link:blog/example-mapping text:Example Mapping) to get every little edge case. This layer should be bulletproof! As the domain layer has no dependencies to the outside, we can use __unit tests__ here. They are __fast__, so having __many unit tests__ is not a problem.
 
 __Application services__ are less interesting, because they mostly contain just a few __business rules__ and a __process flow__. They contain dependencies to the outside world via __ports__, and they can be simulated with __mocks__. But they also add to the complexity of a test, so make sure you are not losing yourself in details here. __Unit tests__ are still a good choice here, but __you won't need as many__.
 
