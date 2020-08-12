@@ -38,7 +38,7 @@ And of course, adapters make use of actual infrastructure components that are, w
 
 (image:wardley.png)
 
-You see that we should __focus on the quality of the items to the left__ more, because these are the items that make our application unique. The items on the right, although necessary, are mostly well-tested themselves, so we should be spending less time there when testing.
+You see that we should __focus on the quality of the items to the upper left__ more, because these are the items that make our application unique. The items on the lower right, although necessary, are mostly well-tested themselves, so we should be spending less time there when testing.
 
 Of course there are applications which are themselves more generic - I'm talking about applications that belong into your __core domain__.
 
