@@ -99,7 +99,7 @@ Let's take a look at an adapter test. Its job is to take data from the outside w
 
 We are using a __mock bean__ to validate if the consumer works. Do not test what happens within the application service! This should already be covered by unit tests of the service itself.
 
-I will continue next week with the performance aspect of adapter tests. We will discuss the pros and cons of reusing application contexts, and explore Spring Boot test slices.
+There will be more examples next week! I will continue with the performance aspect of adapter tests. We will discuss the pros and cons of reusing application contexts, and explore Spring Boot test slices.
 
 Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-6-archunit text:part six).
 
