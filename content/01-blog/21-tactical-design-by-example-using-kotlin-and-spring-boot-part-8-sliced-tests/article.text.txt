@@ -1,0 +1,107 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 8) - Sliced Tests
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 8) - Sliced Tests
+
+----
+
+Date:
+
+08/28/2020
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, testing, test slices, spring boot
+
+----
+
+Text:
+
+Integration Testing with Spring Boot comes at the cost of constructing the Application Context. This can make integration tests really slow. There are several strategies to deal with this.
+
+## Strategy: Using a single context
+
+### Application Context caching
+
+In the one camp, there are people who like to re-use an Application Context as often as possible. The extreme case would be to use just one Application Context for an entire integration test suite. This is a valid approach.
+
+Spring Boot offers an Application Context cache, and whenever it realizes that a context like the desired one has already been constructed, it is re-used. If you are not sure if your Application Context is re-used, there is a simple way to find out. Just add the following configuration
+
+```yaml
+logging:
+  level:
+    org.springframework.test.context.cache: DEBUG
+```
+
+In your log, you will find something like this after running your integration test suite
+
+```
+Spring test ApplicationContext cache statistics: [DefaultContextCache@660c25e3 size = 6, maxSize = 32, parentContextCount = 0, hitCount = 542, missCount = 6]
+```
+
+You see that in total six application contexts were created (missCount). In this example, the size and the missCount are equal, and that seems plausible. However, things are more clear when you use the annotation DirtiesContext on a single integration test. When you do that, the missCount will still be six, however the size will be five, as one context has been deleted from the cache - because it was dirty.
+
+### Problems with using a single context
+
+Sometimes it's hard to re-use the application context, for example when you use stateful dependencies, like an embedded Kafka, which might be polluted after running a first test. Of course you can clean up this pollution manually, and this is what you must do if you want to re-use the Application Context.
+
+However, if you don't succeed, you will have undesired side-effects in the second integration test. These problems are hard to identify, and I have seen teams spend a lot of time resolving these issues. And it's not time that people enjoy spending.
+
+Another problem is that this strategy only pays off when running the entire suite, for example during Continuous Integration. If you are doing Test-Driven Development, this single huge Application Context takes a long time to start, and this slows down your development speed significantly.
+
+To me, these are strong arguments against this strategy.
+
+## Strategy: Sliced tests
+
+So the other camp might be the people who use small, dedicated Application Contexts for individual test cases. You might have to start up many Application Contexts, and the entire suite might be slower to execute, but it might still be a superior way. With sliced tests, Spring Boot has a great tool to employ this strategy.
+
+The idea is to have only those beans in the Application Context, which are relevant for the test case. This keeps Application Contexts small, and they start up faster, and by this allow to do Test-Driven Development. One could argue that this manipulated Application Context is totally different from the Application Context at runtime, and your tests are meaningless. While there is a point to this, I would argue there is value in knowing that you are using the framework in the correct way. Especially when testing an adapter, I want to make sure that, for example, the database layer is configured correctly. Here, a test slice is absolutely sufficient.
+
+For end-to-end tests I still recommend to use a full application context, like the one you would use during runtime. But you should only have a few tests for those, and they should focus on the business case, and not test infrastructure.
+
+There are pre-defined test slices for loads of things, like databases, JSON or MVC. Just browse the documentation to find the one you need. There is also a blog post about writing a custom test slice, however it is pretty old, and I have never done that myself. But I would love to have a test slice for Kafka. If you are interested in collaborating on this, please let me know.
+
+## Example
+
+### JdbcTest
+
+At Team Turtlez we wanted to try a sliced test for the database adapters. We are using JDBC and not JPA here, hence we extend JdbcTest and not JpaTest. For Embedded MySQL we need some customization, so we introduced a dedicated annotation
+
+```kotlin
+@JdbcTest
+@ExtendWith(EmbeddedMysqlExtension::class)
+@ActiveProfiles("int-test")
+@AutoConfigureTestDatabase(replace = NONE)
+@Import(
+    MappedArticlesJdbcRepository::class,
+    DepositCategoryJdbcRepository::class,
+    DepositPriceJdbcRepository::class,
+    DepositArticleJdbcRepository::class
+)
+annotation class AdapterDatabaseTest
+```
+
+We want to use the configuration from the int-test profile, so we need to activate the profile. However, we need to tell the database autoconfiguration not to best-guess the data source (replace = NONE). And then we need to import the relevant repository classes that are under test.
+
+### WebMVCTest
+
+For controller tests we use Spring Boot's WebMVCTest. We also need to customize here, as the Fulfillment Spring Boot starter handles authorization, and we need a few more beans, take a look at the custom annotation. Basically we also add the test profile, import the beans for authorization that are needed from the starter, and forward the configuration to Spring Boot's WebMVCTest annotation.
+
+## Summary
+
+It makes sense to think about your requirements for integration testing and optimizing. We at Team Turtlez think that while the CI pipeline should be as fast as possible, we trade off some performance here for development speed and less side-effects, which might result in nasty debugging.
+
+The startup time of the sliced tests is not spectacularly fast, but decent enough. By injecting an ApplicationContext and logging its size, we saw that instead of 500+ beans there are only about 50 beans in the context.
+
+Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-7-testing-101 text:part seven).
+
+
+
+
