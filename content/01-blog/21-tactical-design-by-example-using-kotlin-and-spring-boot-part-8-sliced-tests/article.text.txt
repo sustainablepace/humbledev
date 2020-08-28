@@ -101,7 +101,7 @@ We want to use the configuration from the int-test profile, so we need to activa
 
 ### WebMVCTest
 
-For controller tests we use Spring Boot's WebMVCTest. We also need to customize here, as the Fulfillment Spring Boot starter handles authorization, and we need a few more beans, take a look at the custom annotation. Basically we also add the test profile, import the beans for authorization that are needed from the starter, and forward the configuration to Spring Boot's WebMVCTest annotation.
+For controller tests we use Spring Boot's WebMVCTest. We also need to customize here, as our organization's Spring Boot starter handles authorization, and we need a few more beans. Basically we also add the test profile, import the beans for authorization that are needed from the starter, and forward the configuration to Spring Boot's WebMVCTest annotation.
 
 ## Summary
 
