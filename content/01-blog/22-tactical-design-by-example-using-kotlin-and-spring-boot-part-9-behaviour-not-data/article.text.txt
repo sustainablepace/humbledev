@@ -46,9 +46,9 @@ The limitations of CRUD are of course also charming: The concept is __widely und
 
 ## Symptoms of a data-centric perspective
 
-### The problem with JPA
+### JPA is overwhelming
 
-In a Spring application that is designed for CRUD, JPA is a popular choice for accessing the database. It is an overwhelmingly powerful tool that is deceptively easy to use. It works really well for the standard use-cases, but it forces your application to obtain a database-centric view, because the JPA entities themselves are modelled after the table layout.
+In a Spring application that is designed for CRUD, JPA is a popular choice for accessing the database. It is an overwhelmingly powerful tool, yet it's deceptively easy to use - a dangerous combination. It works really well for the standard use-cases, but it forces your application to obtain a database-centric view, because the JPA entities themselves are __modelled after the table layout__.
 
 JPA entities are also __mutable__, because changes are only flushed to the database when the object is actually changed. Because immutability is discouraged, __side-effects__ are not uncommon and more complexity is added.
 
@@ -64,9 +64,9 @@ __Refactorings__ often only __scratch the surface__, because the keep the underl
 
 ## Behaviour-centric perspective
 
-Apparently adding new features is hard when code has to be altered. __Adding and removing code is easy, but changes are hard__. If your code has a data-centric view, consequences of changes are often global, because the data is used everywhere.
+Apparently adding new features is hard when code has to be altered. __Adding and removing code is easy, but changes are hard__. If your code is structured in a data-centric view, consequences of changes are often global, because the data is used everywhere.
 
-We would like to have a code base where __new features translate to new code__, not altered code. This is what I mean by behaviour-centric: any new feature is a new behaviour, which can be added as new code rather than change existing code. We need to structure our application in a way that allows this style of development.
+We would like to have a code base where __new features translate to new code__, not altered code. This is what I mean by behaviour-centric: any new feature is a new behaviour, which can be added as new code rather than changing existing code. We need to structure our application in a way that allows this style of development.
 
 I will elaborate on behaviour-centric development in the next weeks, so stay tuned!
 
