@@ -1,0 +1,59 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 9) - Behaviour, not data
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 9) - Behaviour, not data
+
+----
+
+Date:
+
+09/11/2020
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, spring boot
+
+----
+
+Text:
+
+Let's take a look at the __evolution of an application__: Today, most development is done in __iterations__, so applications __start out with a minimal feature set__, and are __growing steadily over time__. It is not uncommon to end up with very complicated code after only a few iterations, that is __hard to extend and maintain__. Often, a __rewrite or abandonment__ are the only options left.
+
+This is not a problem per se. But I'm arguing here that a __data-centric__ perspective might be a cause of this phenomenon, and a __behaviour-centric__ perspective might help __reducing complexity__ and allow __lengthening the life-cycle__ of an application. So it might be a good idea if you want to create something of value, something to rely on in the long run.
+
+Let's sketch a very broad picture in this blog post of what I mean by a data-centric perspective.
+
+## Data-centric perspective
+
+Most applications start out small: Usually, there is a client-side and a server-side component, where the job of the server-side component is to do persistence or publication, and expose itself to the client-side through a web interface. Let's focus on the server side for now.
+
+For persistence, a relational database is still a popular choice. For a web interface, a REST API is the default option. As far as programming languages are concerned, object-oriented languages like Java are still an industry default. I'm arguing that this tool set will most like lead the application to be modelled as a CRUD-application.
+
+### CRUD applications
+
+In a CRUD application, there are only four kinds of behaviours: create, read, update, delete. These are also the basic HTTP verbs, and also the basic operations supported by a relational database (insert, select, update, delete). Object-oriented languages are traditionally (mis?-)using objects as data containers, exposing the data via getters and setters.
+
+So the choice of the tools will have an immediate effect on the solution of the problem: When you have a hammer, everything looks like a nail.
+
+The limitations of CRUD are of course also charming: The concept is widely understood and usually progress is made really fast. If the scope of the application in question is strictly limited, it might be a good choice. But usually, the limitations are exceeded rather sooner than later, and to make it worse, developers are hardly ever aware of that.
+
+### Symptoms of a data-centric perspective
+
+In a Spring application that is designed for CRUD, JPA is a popular choice for accessing the database. It is a very powerful tool that is deceptively easy to use. For the standard use-cases it works really well, but it forces your application to have a database-centric view, because the JPA entities themselves are modelled after the table layout.
+
+Usually, the application services are clustered by entity. So if you have an "order" entity, you usually have an "order" service. This works quite well if you only have one entity: but as soon as two entities are depending on one another, it soon becomes arbitrary in which class an application service method is put.
+
+
+
+Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-8-sliced-tests text:part eight).
+
+
+
+
