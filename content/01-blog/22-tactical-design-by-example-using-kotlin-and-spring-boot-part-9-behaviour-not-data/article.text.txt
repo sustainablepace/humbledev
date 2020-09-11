@@ -36,11 +36,13 @@ Most applications start out small: Usually, there is a client-side and a server-
 
 For persistence, a __relational database__ is still a popular choice. For a web interface, a __REST API__ is the default option. As far as programming languages are concerned, __object-oriented languages__ like Java are still an industry default. I'm arguing that this tool set will most likely lead to the application being modelled as a CRUD application.
 
-### CRUD applications
+### CRUD
 
 In a CRUD application, there are only __four kinds of behaviours__: create, read, update, delete. These are also the basic __HTTP verbs__, and also the basic __relational database operations__ (insert, select, update, delete). Object-oriented languages are traditionally (mis?-)using objects as data containers, exposing the data via __getters and setters__.
 
 So the choice of the tools will have an immediate effect on the solution of the problem: __When you have a hammer, everything looks like a nail.__
+
+### Applications keep growing
 
 The limitations of CRUD are of course also charming: The concept is __widely understood__ and usually __progress is made really fast__. If the scope of the application in question is strictly limited, it might be a good choice. But usually, the __limitations are exceeded__ rather sooner than later, and to make it worse, __developers are hardly ever aware__ of that.
 
