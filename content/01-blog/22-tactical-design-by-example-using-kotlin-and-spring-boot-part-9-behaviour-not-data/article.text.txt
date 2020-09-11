@@ -24,7 +24,7 @@ ddd, kotlin, hexagon architecture, spring boot
 
 Text:
 
-Let's take a look at the __evolution of an application__: Today, most development is done in __iterations__, so applications __start out with a minimal feature set__, and are __growing steadily over time__. It is not uncommon to end up with very complicated code after only a few iterations, that is __hard to extend and maintain__. Often, a __rewrite or abandonment__ are the only options left.
+Let's take a look at the __evolution__ of an application: Today, most development is done in __iterations__, so applications start out with a __minimal feature set__, and are __growing steadily__ over time. It is not uncommon to end up with very complicated code after only a few iterations, that is __hard to extend__ and maintain. Often, a __rewrite__ or abandonment are the only options left.
 
 This is not a problem per se. But I'm arguing here that a __data-centric__ perspective might be a cause of this phenomenon, and a __behaviour-centric__ perspective might help __reducing complexity__ and allow __lengthening the life-cycle__ of an application. So it might be a good idea if you want to create something of value, something to rely on in the long run.
 
@@ -50,21 +50,25 @@ The limitations of CRUD are of course also charming: The concept is __widely und
 
 In a Spring application that is designed for CRUD, JPA is a popular choice for accessing the database. It is an overwhelmingly powerful tool that is deceptively easy to use. It works really well for the standard use-cases, but it forces your application to obtain a database-centric view, because the JPA entities themselves are modelled after the table layout.
 
-JPA entities are often anemic domain models, as they represent the data as it is stored in the database. They are mutable, because changes are only flushed to the database when the object is actually changed. Because immutability is discouraged, side-effects are not uncommon and more complexity is added.
+JPA entities are also __mutable__, because changes are only flushed to the database when the object is actually changed. Because immutability is discouraged, __side-effects__ are not uncommon and more complexity is added.
 
 ### Almighty services
 
-Usually in this setup, the application services are clustered by entity. So if you have an "order" entity, you usually have an "order" service. This works quite well if you only have one entity: but as soon as two entities are depending on one another, it soon becomes arbitrary in which class an application service method is put, and you might end up with circular dependencies.
+Usually in this setup, the application services are __clustered by entity__. So if you have an "order" entity, you usually have an "order" service. This works quite well if you only have one entity: but as soon as two entities are depending on one another, it soon becomes __arbitrary__ in which class an application service method is put, and you might end up with __circular dependencies__.
 
-These service classes usually grow to an unmaintainable size. There is no definition of what their job is. Often, they absorb all application logic like a black hole. This makes testing hard: If a class is huge, it also has a huge test class, where you easily get lost when trying to find the right test case. This leads to missing test cases, and also overlapping tests. Also, mocking becomes a nightmare, because a service all of a sudden has loads of dependencies.
+These service classes usually grow to an __unmaintainable size__. There is __no purpose__, no definition of what their job is. Often, they absorb all application logic like a black hole, because JPA entities are often __anemic__, and do not contain logic. If you are using __getters and setters__ extensively, your domain model is likely to be anemic.
 
-Refactorings often only scratch the surface, because the keep the underlying system in place, and only move a bit of code from left to right. Improvement within this frame of mind is hardly possible.
+All this makes testing hard: If a class is huge, it also has a huge test class, where __you easily get lost__ when trying to find the right test case. This leads to __missing test cases__, and also overlapping tests. Also, mocking becomes a nightmare, because a service all of a sudden has __loads of dependencies__.
+
+__Refactorings__ often only __scratch the surface__, because the keep the underlying system in place, and only move a bit of code from left to right. Improvement within this frame of mind is hardly possible.
 
 ## Behaviour-centric perspective
 
 Apparently adding new features is hard when code has to be altered. __Adding and removing code is easy, but changes are hard__. If your code has a data-centric view, consequences of changes are often global, because the data is used everywhere.
 
-We would like to have a code base where new features translate to new code, not altered code. This is what I mean by behaviour-centric: any new feature is a new behaviour, which can be added as new code rather than change existing code. We need to structure our application in a way that allows this style of development. I will elaborate on behaviour-centric development in the next weeks, so stay tuned!
+We would like to have a code base where __new features translate to new code__, not altered code. This is what I mean by behaviour-centric: any new feature is a new behaviour, which can be added as new code rather than change existing code. We need to structure our application in a way that allows this style of development.
+
+I will elaborate on behaviour-centric development in the next weeks, so stay tuned!
 
 Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-8-sliced-tests text:part eight).
 
