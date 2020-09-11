@@ -50,7 +50,7 @@ The limitations of CRUD are of course also charming: The concept is __widely und
 
 ### JPA is overwhelming
 
-In a Spring application that is designed for CRUD, JPA is a popular choice for accessing the database. It is an overwhelmingly powerful tool, yet it's deceptively easy to use - a dangerous combination. It works really well for the standard use-cases, but it forces your application to obtain a database-centric view, because the JPA entities themselves are __modelled after the table layout__.
+In a Spring application that is designed for CRUD, JPA is a popular choice for accessing the database. It is an __overwhelmingly powerful__ tool, yet it's __deceptively easy__ to use - a dangerous combination. It works really well for standard use-cases, but it forces your application to obtain a database-centric view, because the JPA entities themselves are __modelled after the table layout__.
 
 JPA entities are also __mutable__, because changes are only flushed to the database when the object is actually changed. Because immutability is discouraged, __side-effects__ are not uncommon and more complexity is added.
 
