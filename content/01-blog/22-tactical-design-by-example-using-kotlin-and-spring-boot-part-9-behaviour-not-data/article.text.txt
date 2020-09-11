@@ -32,15 +32,15 @@ Let's sketch a very broad picture in this blog post of what I mean by a data-cen
 
 ## Data-centric perspective
 
-Most applications start out small: Usually, there is a client-side and a server-side component, where the job of the server-side component is to do persistence or publication, and expose itself to the client-side through a web interface. Let's focus on the server side for now.
+Most applications start out small: Usually, there is a client-side and a server-side component, where the job of the server-side component is to do __persistence__ or publication, and expose itself to the client-side through a __web interface__. Let's focus on the server side for now.
 
-For persistence, a relational database is still a popular choice. For a web interface, a REST API is the default option. As far as programming languages are concerned, object-oriented languages like Java are still an industry default. I'm arguing that this tool set will most like lead the application to be modelled as a CRUD-application.
+For persistence, a relational database is still a popular choice. For a web interface, a REST API is the default option. As far as programming languages are concerned, object-oriented languages like Java are still an industry default. I'm arguing that this tool set will most likely lead to the application being modelled as a CRUD application.
 
 ### CRUD applications
 
-In a CRUD application, there are only four kinds of behaviours: create, read, update, delete. These are also the basic HTTP verbs, and also the basic operations supported by a relational database (insert, select, update, delete). Object-oriented languages are traditionally (mis?-)using objects as data containers, exposing the data via getters and setters.
+In a CRUD application, there are only __four kinds of behaviours__: create, read, update, delete. These are also the basic __HTTP verbs__, and also the basic __relational database operations__ (insert, select, update, delete). Object-oriented languages are traditionally (mis?-)using objects as data containers, exposing the data via __getters and setters__.
 
-So the choice of the tools will have an immediate effect on the solution of the problem: When you have a hammer, everything looks like a nail.
+So the choice of the tools will have an immediate effect on the solution of the problem: __When you have a hammer, everything looks like a nail.__
 
 The limitations of CRUD are of course also charming: The concept is widely understood and usually progress is made really fast. If the scope of the application in question is strictly limited, it might be a good choice. But usually, the limitations are exceeded rather sooner than later, and to make it worse, developers are hardly ever aware of that.
 
