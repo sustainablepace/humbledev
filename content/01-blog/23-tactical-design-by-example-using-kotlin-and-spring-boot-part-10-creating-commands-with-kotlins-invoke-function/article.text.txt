@@ -24,9 +24,11 @@ ddd, kotlin, hexagon architecture, spring boot, event storming, command, policy,
 
 Text:
 
-I wanted to elaborate on behaviour-centric development, but that didn't happen. Maybe I will get back to that later. Here's something different I have learned recently, the power of Kotlin's invoke method.
+I wanted to elaborate on behaviour-centric development, but that didn't happen. Maybe I will get back to that later. Here's something different I have learned recently, the power of Kotlin's _invoke_ method.
 
-In week 4 I talked about this example of a command
+## What I had
+
+In (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-4 text:part four) I talked about this example of a command
 
 ```kotlin
 data class UpdateDepositPrice(
@@ -56,8 +58,8 @@ data class UpdateDepositPrice(
 
 While this is a perfectly valid way to implement it, a few things bugged me about it
 
- * requireNotNull throws an exception, which is quite harsh and requires handling.
- * The "create" method is syntactical overhead that is distracting
+ * _requireNotNull_ throws an exception, which is quite harsh and requires handling.
+ * The _create_ method is syntactical overhead that is distracting
 
 ```kotlin
     try {
@@ -69,7 +71,9 @@ While this is a perfectly valid way to implement it, a few things bugged me abou
     }
 ```
 
-What I wanted to achieve was to have a constructor-like invokation, that returns an optional command. And this is exactly what you can achieve with Kotlin's invoke method.
+## Alternative
+
+What I wanted to achieve was to have a constructor-like invokation, that returns an optional command. And this is exactly what you can achieve with Kotlin's _invoke_ method.
 
 ```kotlin
 data class UpdateDepositPrice(
@@ -98,12 +102,12 @@ data class UpdateDepositPrice(
 Now this feels more like a constructor when using it. And at the same time, there is no more exception handling
 
 ```kotlin
-    UpdateDepositPrice.create(priceUpdated)?.also { commands ->
+    UpdateDepositPrice(priceUpdated)?.also { commands ->
         commands.forEach { workflow.process(it) }
     } ?: log.warn("message")
 ```
 
-Instead of returning null I could also return an Either-like object, that would contain detailed information of possibly errors.
+Instead of returning _null_ I could also return an (link:https://arrow-kt.io/docs/apidocs/arrow-core-data/arrow.core/-either/ text:Either)-like object, that would contain detailed information of possibly errors.
 
 Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-9-behaviour-not-data text:part nine).
 
