@@ -108,7 +108,17 @@ UpdateDepositPrice(priceUpdated)?.also {
 } ?: log.warn("message")
 ```
 
+### More improvements
+
 Instead of returning _null_ I could also return an (link:https://arrow-kt.io/docs/apidocs/arrow-core-data/arrow.core/-either/ text:Either)-like object, that would contain detailed information of possibly errors, which could be logged in the adapter.
+
+I also like to use the _invoke_ method when passing commands to use cases or workflows. The example could be even more simpler then. Now I'm tempted to write it in a single line of code
+
+```kotlin
+UpdateDepositPrice(priceUpdated)?.also { workflow(it) } ?: log.warn("message")
+```
+
+Thanks to Christopher Keenan for mentioning the _invoke_ method in his blog post (link:https://chrynan.codes/invoking-usecases-the-kotlin-way/ text:Invoking use cases the Kotlin way). Very helpful!
 
 Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-9-behaviour-not-data text:part nine).
 
