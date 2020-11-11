@@ -72,7 +72,7 @@ We would like to have a code base where __new features translate to new code__, 
 
 I will elaborate on behaviour-centric development in the next weeks, so stay tuned!
 
-Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-8-sliced-tests text:part eight).
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-10-creating-commands-with-kotlins-invoke-function text:part ten) or go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-8-sliced-tests text:part eight).
 
 
 

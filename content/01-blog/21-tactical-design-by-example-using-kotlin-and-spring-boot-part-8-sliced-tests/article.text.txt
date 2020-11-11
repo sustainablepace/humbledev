@@ -111,7 +111,7 @@ The startup time of the sliced tests is not spectacularly fast, but decent enoug
 
 How do you handle integration testing in Spring Boot? __Let me know!__ Just (link:https://twitter.com/sustainablepace text:contact me on Twitter).
 
-Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-7-testing-101 text:part seven).
+Move on to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-9-behaviour-not-data text:part nine) or go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-7-testing-101 text:part seven)
 
 
 
