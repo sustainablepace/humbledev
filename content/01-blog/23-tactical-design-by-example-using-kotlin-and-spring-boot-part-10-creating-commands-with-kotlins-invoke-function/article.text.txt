@@ -1,0 +1,112 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 10) - Creating Commands with Kotlin's invoke method
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 10) - Creating Commands with Kotlin's invoke method
+
+----
+
+Date:
+
+11/11/2020
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, spring boot, event storming, command, policy, application service
+
+----
+
+Text:
+
+I wanted to elaborate on behaviour-centric development, but that didn't happen. Maybe I will get back to that later. Here's something different I have learned recently, the power of Kotlin's invoke method.
+
+In week 4 I talked about this example of a command
+
+```kotlin
+data class UpdateDepositPrice(
+    val articleId: String,
+    val refundPrice: Int,
+    val currency: Currency,
+    val currencyUnit: CurrencyUnit
+) : Command() {
+    companion object {
+        fun create(priceUpdated: PriceUpdated): List<UpdateDepositPrice> {
+            val articleId = priceUpdated.getArticleId()
+
+            requireNotNull(articleId) { "No article id found in listing!" }
+
+            return priceUpdated.prices.map { price ->
+                UpdateDepositPrice(
+                    articleId,
+                    price.customAttributes.refund,
+                    Currency.valueOf(price.currency),
+                    CurrencyUnit.valueOf(price.unit)
+                )
+            }
+        }
+    }
+}
+```
+
+While this is a perfectly valid way to implement it, a few things bugged me about it
+
+ * requireNotNull throws an exception, which is quite harsh and requires handling.
+ * The "create" method is syntactical overhead that is distracting
+
+```kotlin
+    try {
+        UpdateDepositPrice.create(priceUpdated).forEach {
+            workflow.process(it)
+        }
+    } catch (e: IllegalArgumentException) {
+        log.warn(e.message)
+    }
+```
+
+What I wanted to achieve was to have a constructor-like invokation, that returns an optional command. And this is exactly what you can achieve with Kotlin's invoke method.
+
+```kotlin
+data class UpdateDepositPrice(
+    val articleId: String,
+    val refundPrice: Int,
+    val currency: Currency,
+    val currencyUnit: CurrencyUnit
+) : Command() {
+    companion object {
+        operator fun invoke(priceUpdated: PriceUpdated): List<UpdateDepositPrice>? {
+            return priceUpdated.getArticleId()?.let {
+                priceUpdated.prices.map { price ->
+                    UpdateDepositPrice(
+                        articleId,
+                        price.customAttributes.refund,
+                        Currency.valueOf(price.currency),
+                        CurrencyUnit.valueOf(price.unit)
+                    )
+                }
+            }
+        }
+    }
+}
+```
+
+Now this feels more like a constructor when using it. And at the same time, there is no more exception handling
+
+```kotlin
+    UpdateDepositPrice.create(priceUpdated)?.also { commands ->
+        commands.forEach { workflow.process(it) }
+    } ?: log.warn("message")
+```
+
+Instead of returning null I could also return an Either-like object, that would contain detailed information of possibly errors.
+
+Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-9-behaviour-not-data text:part nine).
+
+
+
+

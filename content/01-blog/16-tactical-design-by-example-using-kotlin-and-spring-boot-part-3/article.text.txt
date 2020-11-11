@@ -26,13 +26,13 @@ Text:
 
 Let's take a look back at my goal
 
-> Based on Event Storming and Hexagon Architecture I want to create a set of building blocks, using Kotlin and Spring Boot. These building blocks can be used to assemble µServices that solve real world problems.
+> Based on Event Storming and Hexagon Architecture I want to create a set of building blocks, using Kotlin and Spring Boot. These building blocks can be used to assemble µServices that solve real world problems.
 
 I want to clarify what I mean by building blocks. First of all, Eric Evans talks about building blocks in his Domain-Driven Design book. Here's an overview of the building blocks he is referring to (image from (link: http://static.olivergierke.de/lectures/ddd-and-spring/ text:Domain-Driven Design and Spring))
 
 (image:01.png)
 
-Some of these building blocks are first-class citizens in the Spring eco-system, which is a good foundation. However, these building blocks are also quite fine-grained , which only become visible if you model on a very low level. So while we do use them in day-to-day programming, we need something more abstract when exploring a story during a refinement, together with a product owner and potential stakeholders.
+Some of these building blocks are first-class citizens in the Spring eco-system, which is a good foundation. However, these building blocks are also quite fine-grained , which only become visible if you model on a very low level. So while we do use them in day-to-day programming, we need something more abstract when exploring a story during a refinement, together with a product owner and potential stakeholders.
 
 A problem I encountered in the past was a gap between high-level, domain-oriented modeling, and a low-level, software-oriented modeling. At our team at REWE Digital, we were frequently surprised by insights which only revealed themselves on a closer look, things that were invisible from a higher, abstract level. That often made our estimations unusable, which is always an unnecessary burden on the trust levels within the team.
 
@@ -52,7 +52,7 @@ While a Jamboard is more limited than, for example, (link:https://miro.com/ text
 
 In the example above, it's quite easy to see that there are actually two parts to the story, so a visualization often hints at options to split stories. You also see repeating cascades of orange, blue and yellow post-its, and also blue and pink post-its. These Event Storming patterns make it easier to create a simpler mental model of a problem, and pave the road to a technical solution.
 
-Now that refinements are a little more low-level, they take up more time, and are more intense. Instead of a single two-hour refinement per week, we now do two refinements, each one hour long. Although the first few sessions were quite bumpy, the feedback from the team is now unanimously positive. 
+Now that refinements are a little more low-level, they take up more time, and are more intense. Instead of a single two-hour refinement per week, we now do two refinements, each one hour long. Although the first few sessions were quite bumpy, the feedback from the team is now unanimously positive.
 
 ## Building blocks revisited
 
