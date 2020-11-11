@@ -28,7 +28,7 @@ I wanted to elaborate on behaviour-centric development, but that didn't happen. 
 
 ## Revisiting commands
 
-In (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-4 text:part four) I talked about this example of a command
+In (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-4 text:part four) I talked about a similar example of a command
 
 ```kotlin
 data class UpdateDepositPrice(
@@ -38,19 +38,17 @@ data class UpdateDepositPrice(
     val currencyUnit: CurrencyUnit
 ) : Command() {
     companion object {
-        fun create(priceUpdated: PriceUpdated): List<UpdateDepositPrice> {
+        fun create(priceUpdated: PriceUpdated): UpdateDepositPrice {
             val articleId = priceUpdated.getArticleId()
 
             requireNotNull(articleId) { "No article id found in listing!" }
 
-            return priceUpdated.prices.map { price ->
-                UpdateDepositPrice(
-                    articleId,
-                    price.customAttributes.refund,
-                    Currency.valueOf(price.currency),
-                    CurrencyUnit.valueOf(price.unit)
-                )
-            }
+            return UpdateDepositPrice(
+                articleId,
+                priceUpdated.price.customAttributes.refund,
+                Currency.valueOf(priceUpdated.price.currency),
+                CurrencyUnit.valueOf(priceUpdated.price.unit)
+            )
         }
     }
 }
@@ -65,7 +63,7 @@ While this is a perfectly valid way to implement it, a few things bugged me abou
 
 ```kotlin
 try {
-    UpdateDepositPrice.create(priceUpdated).forEach {
+    UpdateDepositPrice.create(priceUpdated).let {
         workflow.process(it)
     }
 } catch (e: IllegalArgumentException) {
@@ -85,16 +83,14 @@ data class UpdateDepositPrice(
     val currencyUnit: CurrencyUnit
 ) : Command() {
     companion object {
-        operator fun invoke(priceUpdated: PriceUpdated): List<UpdateDepositPrice>? {
+        operator fun invoke(priceUpdated: PriceUpdated): UpdateDepositPrice? {
             return priceUpdated.getArticleId()?.let {
-                priceUpdated.prices.map { price ->
-                    UpdateDepositPrice(
-                        articleId,
-                        price.customAttributes.refund,
-                        Currency.valueOf(price.currency),
-                        CurrencyUnit.valueOf(price.unit)
-                    )
-                }
+                UpdateDepositPrice(
+                    articleId,
+                    priceUpdated.price.customAttributes.refund,
+                    Currency.valueOf(priceUpdated.price.currency),
+                    CurrencyUnit.valueOf(priceUpdated.price.unit)
+                )
             }
         }
     }
@@ -108,13 +104,12 @@ Now this feels more like a constructor when using it, although it is just the in
 And at the same time, there is no more exception handling necessary
 
 ```kotlin
-UpdateDepositPrice(priceUpdated)?.also { commands ->
-    commands.forEach { workflow.process(it) }
+UpdateDepositPrice(priceUpdated)?.also {
+    workflow.process(it)
 } ?: log.warn("message")
 ```
 
-
-Instead of returning _null_ I could also return an (link:https://arrow-kt.io/docs/apidocs/arrow-core-data/arrow.core/-either/ text:Either)-like object, that would contain detailed information of possibly errors.
+Instead of returning _null_ I could also return an (link:https://arrow-kt.io/docs/apidocs/arrow-core-data/arrow.core/-either/ text:Either)-like object, that would contain detailed information of possibly errors, which could be logged in the adapter.
 
 Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-9-behaviour-not-data text:part nine).
 
