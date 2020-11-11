@@ -26,7 +26,7 @@ Text:
 
 I wanted to elaborate on behaviour-centric development, but that didn't happen. Maybe I will get back to that later. Here's something different I have learned recently, the power of Kotlin's _invoke_ method.
 
-## What I had
+## Revisiting commands
 
 In (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-4 text:part four) I talked about this example of a command
 
@@ -71,7 +71,7 @@ While this is a perfectly valid way to implement it, a few things bugged me abou
     }
 ```
 
-## Alternative
+## A more idiomatic approach
 
 What I wanted to achieve was to have a constructor-like invokation, that returns an optional command. And this is exactly what you can achieve with Kotlin's _invoke_ method.
 
