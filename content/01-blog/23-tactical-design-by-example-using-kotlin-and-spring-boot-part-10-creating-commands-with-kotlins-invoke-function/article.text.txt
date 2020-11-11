@@ -56,6 +56,7 @@ data class UpdateDepositPrice(
 }
 ```
 
+### Problems
 
 While this is a perfectly valid way to implement it, a few things bugged me about it
 
@@ -100,6 +101,7 @@ data class UpdateDepositPrice(
 }
 ```
 
+### Result
 
 Now this feels more like a constructor when using it, although it is just the invokation operator _()_ being called on the companion object.
 
