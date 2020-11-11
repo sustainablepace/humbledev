@@ -64,13 +64,13 @@ While this is a perfectly valid way to implement it, a few things bugged me abou
  * The _create_ method is syntactical overhead that is distracting
 
 ```kotlin
-    try {
-        UpdateDepositPrice.create(priceUpdated).forEach {
-            workflow.process(it)
-        }
-    } catch (e: IllegalArgumentException) {
-        log.warn(e.message)
+try {
+    UpdateDepositPrice.create(priceUpdated).forEach {
+        workflow.process(it)
     }
+} catch (e: IllegalArgumentException) {
+    log.warn(e.message)
+}
 ```
 
 ## A more idiomatic approach
@@ -108,9 +108,9 @@ Now this feels more like a constructor when using it, although it is just the in
 And at the same time, there is no more exception handling necessary
 
 ```kotlin
-    UpdateDepositPrice(priceUpdated)?.also { commands ->
-        commands.forEach { workflow.process(it) }
-    } ?: log.warn("message")
+UpdateDepositPrice(priceUpdated)?.also { commands ->
+    commands.forEach { workflow.process(it) }
+} ?: log.warn("message")
 ```
 
 
