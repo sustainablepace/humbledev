@@ -83,8 +83,8 @@ data class UpdateDepositPrice(
     val currencyUnit: CurrencyUnit
 ) : Command() {
     companion object {
-        operator fun invoke(priceUpdated: PriceUpdated): UpdateDepositPrice? {
-            return priceUpdated.getArticleId()?.let {
+        operator fun invoke(priceUpdated: PriceUpdated): UpdateDepositPrice? =
+            priceUpdated.getArticleId()?.let { articleId ->
                 UpdateDepositPrice(
                     articleId,
                     priceUpdated.price.customAttributes.refund,
@@ -92,7 +92,6 @@ data class UpdateDepositPrice(
                     CurrencyUnit.valueOf(priceUpdated.price.unit)
                 )
             }
-        }
     }
 }
 ```
