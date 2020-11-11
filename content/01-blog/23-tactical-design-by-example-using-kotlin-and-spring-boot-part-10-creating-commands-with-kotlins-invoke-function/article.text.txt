@@ -112,7 +112,7 @@ UpdateDepositPrice(priceUpdated)?.also {
 
 Instead of returning _null_ I could also return an (link:https://arrow-kt.io/docs/apidocs/arrow-core-data/arrow.core/-either/ text:Either)-like object, that would contain detailed information of possibly errors, which could be logged in the adapter.
 
-I also like to use the _invoke_ method when passing commands to use cases or workflows. The example could be even more simpler then. Now I'm tempted to write it in a single line of code
+I also like to use the _invoke_ method when passing commands to use cases or workflows, and get rid of the _process_ method. The example could be even simpler then, and I'm tempted to write it in a single line of code
 
 ```kotlin
 UpdateDepositPrice(priceUpdated)?.also { workflow(it) } ?: log.warn("message")
