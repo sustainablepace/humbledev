@@ -24,7 +24,7 @@ ddd, kotlin, hexagon architecture, spring boot, event storming, command, policy,
 
 Text:
 
-Only recently have I come across the Result type in Kotlins standard library. It's been added in version 1.3. It's a great way to implement a simple Either-like type, something I have mentioned in the previous week.
+Only recently have I come across the _Result_ type in Kotlin's standard library. It's been added in version 1.3. It's a great way to implement a simple _Either_-like type, something I have mentioned in the previous week.
 
 ## Return nullable type or Result?
 
@@ -61,7 +61,7 @@ UpdateDepositPrice(priceUpdated)?.also {
 
 ### Enter the Result type
 
-Let's rewrite the factory method with the Result type
+Let's rewrite the factory method with the _Result_ type
 
 ```kotlin
 operator fun invoke(priceUpdated: PriceUpdated): Result<UpdateDepositPrice> =
@@ -87,7 +87,7 @@ There are various options here, I have tried the following
 
 ### fold
 
-Folding takes two lambdas as arguments. It is short, but a bit too technical for my taste
+_Fold_ takes two lambdas as arguments. It is short, but the term "folding" is a bit too technical for my taste
 
 ```kotlin
 UpdateDepositPrice(priceUpdated).fold({
@@ -97,10 +97,9 @@ UpdateDepositPrice(priceUpdated).fold({
 })
 ```
 
-
 ### onSuccess, onFailure
 
-Even though this is longer, I think this is much more readable, especially if you are not aware of the Result type
+Even though this is a little longer, I think this is much more readable, especially if you are not aware of the _Result_ type
 
 ```kotlin
 UpdateDepositPrice(priceUpdated)
@@ -111,13 +110,13 @@ UpdateDepositPrice(priceUpdated)
     }
 ```
 
-Both are valid options. You can also go for getOrElse or getOrDefault, read more about the Result type in the (link:https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/ text:Kotlin documentation).
+Both are valid options. You can also go for _getOrElse_ or _getOrDefault_, read more about the _Result_ type in the (link:https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/ text:Kotlin documentation).
 
 ## One minor drawback though
 
-Returning Result types is still an experimental feature, so use it at your own risk. You need to activate it via the compiler flag
+Returning _Result_ types is still an experimental feature, so use it at your own risk. You need to activate it via the compiler flag
 
-```kotlin
+```
 -Xallow-result-return-type
 ```
 
