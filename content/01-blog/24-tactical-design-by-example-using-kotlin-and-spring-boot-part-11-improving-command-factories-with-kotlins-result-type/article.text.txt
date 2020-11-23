@@ -1,0 +1,118 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 11) - Improving Command factories with Kotlin's Result type
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 11) - Improving Command factories with Kotlin's Result type
+
+----
+
+Date:
+
+11/23/2020
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, spring boot, event storming, command, policy, application service
+
+----
+
+Text:
+
+Only recently have I come across the Result type in Kotlins standard library. It's been added in version 1.3. It's a great way to implement a simple Either-like type, something I have mentioned in the previous week.
+
+## Return nullable type or Result?
+
+I built a factory method for a command that returned a nullable type
+
+```kotlin
+data class UpdateDepositPrice(
+    val articleId: String,
+    val refundPrice: Int,
+    val currency: Currency,
+    val currencyUnit: CurrencyUnit
+) : Command() {
+    companion object {
+        operator fun invoke(priceUpdated: PriceUpdated): UpdateDepositPrice? =
+            priceUpdated.getArticleId()?.let { articleId ->
+                UpdateDepositPrice(
+                    articleId,
+                    priceUpdated.price.customAttributes.refund,
+                    Currency.valueOf(priceUpdated.price.currency),
+                    CurrencyUnit.valueOf(priceUpdated.price.unit)
+                )
+            }
+    }
+}
+```
+
+Problem is, I now have no error message in the calling function, and I have to log a generic error message
+
+```kotlin
+UpdateDepositPrice(priceUpdated)?.also {
+    workflow.process(it)
+} ?: log.warn("message")
+```
+
+### Enter the Result type
+
+Let's rewrite the factory method with the Result type
+
+```kotlin
+operator fun invoke(priceUpdated: PriceUpdated): Result<UpdateDepositPrice> =
+    priceUpdated.getArticleId()?.let { articleId ->
+        Result.success(
+            UpdateDepositPrice(
+                articleId,
+                priceUpdated.price.customAttributes.refund,
+                Currency.valueOf(priceUpdated.price.currency),
+                CurrencyUnit.valueOf(priceUpdated.price.unit)
+            )
+        )
+    } ?: Result.failure(IllegalArgumentException("No article id found in listing!"))
+```
+
+This adds a minimal wrapper around the returned command, plus an exception in case the articleId is null. The exception is not thrown!
+
+## Handling the result
+
+There are various options here, I have tried the following
+
+### fold
+
+Folding takes two lambdas as arguments. It is short, but a bit too technical for my taste
+
+```kotlin
+UpdateDepositPrice(priceUpdated).fold({
+    workflow.process(it)
+}, { e ->
+    log.warn(e.message)
+})
+```
+
+
+### onSuccess, onFailure
+
+Even though this is longer, I think this is much more readable, especially if you are not aware of the Result type
+
+```kotlin
+UpdateDepositPrice(priceUpdated)
+    .onSuccess {
+        workflow.process(it)
+    }.onFailure { e ->
+        log.warn(e.message)
+    }
+```
+
+Thanks to (link:https://twitter.com/pysaumont text:Pierre-Yves Saumont) for mentioning the Result type in his book (link:https://www.manning.com/books/the-joy-of-kotlin text:The Joy of Kotlin). Very helpful!
+
+Go back to (link:blog/tactical-design-by-example-using-kotlin-and-spring-boot-part-10-creating-commands-with-kotlins-invoke-function text:part ten).
+
+
+
+
