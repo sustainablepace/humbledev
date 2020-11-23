@@ -51,12 +51,12 @@ data class UpdateDepositPrice(
 }
 ```
 
-Problem is, I now have no error message in the calling function, and I have to log a generic error message
+Problem is, I now pass no error message back to the caller, and I have to log a generic error message.
 
 ```kotlin
 UpdateDepositPrice(priceUpdated)?.also {
     workflow.process(it)
-} ?: log.warn("message")
+} ?: log.warn("generic error message")
 ```
 
 ### Enter the Result type
@@ -74,7 +74,9 @@ operator fun invoke(priceUpdated: PriceUpdated): Result<UpdateDepositPrice> =
                 CurrencyUnit.valueOf(priceUpdated.price.unit)
             )
         )
-    } ?: Result.failure(IllegalArgumentException("No article id found in listing!"))
+    } ?: Result.failure(
+        IllegalArgumentException("No article id found in listing!")
+    )
 ```
 
 This adds a minimal wrapper around the returned command, plus an exception in case the articleId is null. The exception is not thrown!
@@ -107,6 +109,16 @@ UpdateDepositPrice(priceUpdated)
     }.onFailure { e ->
         log.warn(e.message)
     }
+```
+
+Both are valid options. You can also go for getOrElse or getOrDefault, read more about the Result type in the (link:https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/ text:Kotlin documentation).
+
+## One minor drawback though
+
+Returning Result types is still an experimental feature, so use it at your own risk. You need to activate it via the compiler flag
+
+```kotlin
+-Xallow-result-return-type
 ```
 
 Thanks to (link:https://twitter.com/pysaumont text:Pierre-Yves Saumont) for mentioning the Result type in his book (link:https://www.manning.com/books/the-joy-of-kotlin text:The Joy of Kotlin). Very helpful!
