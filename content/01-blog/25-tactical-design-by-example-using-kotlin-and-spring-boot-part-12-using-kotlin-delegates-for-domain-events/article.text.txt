@@ -1,0 +1,123 @@
+Title:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 12) - Using Kotlin Delegates for Domain Events
+
+----
+
+Description:
+
+Tactical Design by Example - Using Kotlin and Spring Boot (Part 12) - Using Kotlin Delegates for Domain Events
+
+----
+
+Date:
+
+01/08/2021
+
+----
+
+Tags:
+
+ddd, kotlin, hexagon architecture, spring boot, event storming, command, domain event, delegate
+
+----
+
+Text:
+
+Let's talk a little more about behavior vs data today. Imagine modelling a chess game, when a player makes a move.
+
+## Behaviour
+
+This would be a simple model for making a move that could come up in an Event Storming
+
+(image:chess.png)
+
+When you look at it from a behaviour perspective, there are two different outcomes of the "Move piece" command - either the move is legal, and a piece is moved, or it is illegal, and the piece is not moved. In code, this could look something like this
+
+```kotlin
+sealed class PieceMovedOrNot
+
+class PieceMoved(
+    val move: Move,
+    val chessGame: ChessGame
+): PieceMovedOrNot()
+
+class PieceNotMoved(
+    val move: Move,
+    val chessGame: ChessGame,
+    val reason: String
+) : PieceMovedOrNot()
+
+fun ChessGame.movePiece(move: Move): PieceMovedOrNot = ...
+```
+
+The advantage here is, that you don't have to look at the data in order to find out if and how the data changed.
+
+```kotlin
+when(val event = chessGame.movePiece(move)) {
+    is PieceMoved -> ...
+    is PieceNotMoved -> ...
+}
+```
+
+## Data
+
+But when you look at it from the data perspective, the result of moving a piece in a chess game might be a modified chess game
+
+```kotlin
+class ChessGame {
+    fun movePiece(move: Move): ChessGame = ...
+}
+```
+
+The upside here is that you can easily chain calls to the model
+
+```kotlin
+chessGame
+    .movePiece(Move(e2,e4))
+    .movePiece(Move(e7,e6))
+    ...
+```
+
+I think the data-centric approach is more popular. But is there a clever way we can introduce a behaviour-centric view, without losing the benefits of the data-centric view?
+
+## Implementation by delegation
+
+Kotlin has this cool feature, where you can easily compose an object from various sources. It's called (link: https://kotlinlang.org/docs/reference/delegation.html text:implementation by delegation), but is also known as (link:https://en.wikipedia.org/wiki/Mixin text:mix-in). Now we can have the best of both worlds.
+
+```kotlin
+interface ChessGame {
+    fun movePiece(move: ValidMove): PieceMovedOrNot
+}
+
+class PieceMoved(
+    val move: ValidMove,
+    val chessGame: ChessGame
+) : PieceMovedOrNot(), ChessGame by chessGame
+```
+
+Now you can use the event just like you would use the data! Both the when-statement and the chaining would work.
+
+## Instantiation
+
+A disadvantage here is, now that the name ChessGame is taken by the interface, we need to rename the class. Here, I've renamed it to ChessGameAggregate.
+
+```kotlin
+class ChessGameAggregate: ChessGame {
+    fun movePiece(move: Move): ChessGame = ...
+}
+```
+
+Instantiating the object would look a little ugly, so I like to use a simple factory method.
+
+```kotlin
+fun chessGame(): ChessGame = ChessGameAggregate()
+```
+
+This is something that Kotlin often does, think of factories like setOf(). With the factory in place, there is no need to use the ChessGameAggregate constructor anymore.
+
+
+
+
+
+
