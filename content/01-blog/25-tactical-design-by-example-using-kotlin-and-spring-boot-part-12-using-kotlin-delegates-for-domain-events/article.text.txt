@@ -24,11 +24,11 @@ ddd, kotlin, hexagon architecture, spring boot, event storming, command, domain 
 
 Text:
 
-Let's talk a little more about behavior vs data today. Imagine modelling a chess game, when a player makes a move.
+Let's talk a little more about behavior vs data today. Imagine modelling a chess game, especially the part where a player makes a move.
 
 ## Behaviour
 
-This would be a simple model for making a move that could come up in an Event Storming
+This would be a simple model for making a move that could come up in an Event Storming. The command is the blue sticky, the aggregate is yellow, and the events are orange.
 
 (image:chess.png)
 
@@ -51,7 +51,7 @@ class PieceNotMoved(
 fun ChessGame.movePiece(move: Move): PieceMovedOrNot = ...
 ```
 
-The advantage here is, that you don't have to look at the data in order to find out if and how the data changed.
+The advantage here is, that you don't have to look at the data in order to find out if and how the data changed. In Kotlin, the when function is helpful here.
 
 ```kotlin
 when(val event = chessGame.movePiece(move)) {
@@ -70,7 +70,7 @@ class ChessGame {
 }
 ```
 
-The upside here is that you can easily chain calls to the model
+The upside here is that you can easily chain calls to the model. Something like this would be great for testing:
 
 ```kotlin
 chessGame
@@ -79,11 +79,11 @@ chessGame
     ...
 ```
 
-I think the data-centric approach is more popular. But is there a clever way we can introduce a behaviour-centric view, without losing the benefits of the data-centric view?
+I think a data-centric approach is generally more popular. But is there a clever way we can introduce a behaviour-centric view, without losing the benefits of the data-centric view?
 
 ## Implementation by delegation
 
-Kotlin has this cool feature, where you can easily compose an object from various sources. It's called (link: https://kotlinlang.org/docs/reference/delegation.html text:implementation by delegation), but is also known as (link:https://en.wikipedia.org/wiki/Mixin text:mix-in). Now we can have the best of both worlds.
+Kotlin has this cool feature, where you can easily compose an object from various sources. It's called (link: https://kotlinlang.org/docs/reference/delegation.html text:implementation by delegation), but the pattern is also known as (link:https://en.wikipedia.org/wiki/Mixin text:mix-in). Now we can have the best of both worlds.
 
 ```kotlin
 interface ChessGame {
@@ -104,7 +104,7 @@ A disadvantage here is, now that the name ChessGame is taken by the interface, w
 
 ```kotlin
 class ChessGameAggregate: ChessGame {
-    fun movePiece(move: Move): ChessGame = ...
+    override fun movePiece(move: Move): ChessGame = ...
 }
 ```
 
@@ -116,7 +116,11 @@ fun chessGame(): ChessGame = ChessGameAggregate()
 
 This is something that Kotlin often does, think of factories like setOf(). With the factory in place, there is no need to use the ChessGameAggregate constructor anymore.
 
+## Summary
 
+I think there is real value in modeling domain events in code. Sometimes it's hard to see what's going on when all you have is data. Using events together with when-statements makes code legible, almost as good as plain english.
+
+This concludes the series of blog posts on tactical design with Kotlin, I've learned a lot during the last months. I've also been busy creating a two-day training that contains both the modeling part (Event Storming on different flight levels), as well as implementation (using Hexagon Architecture and Kotlin features). I've created an elaborate Miro board and prepared a software project, so the training is really remote-friendly. If you or your whole team is interested in joining a training, feel free to contact me.
 
 
 
