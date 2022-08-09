@@ -6,7 +6,6 @@
 
   <title><?php echo html($page->title()) ?> | <?php echo html($site->title()) ?></title>
 
-  <?php echo css('http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700') ?>
   <?php echo css('assets/css/site.css') ?>
   <?php echo css('assets/css/prism.css') ?>
   <?php echo js('assets/js/prism.js') ?>
